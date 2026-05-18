@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ku">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>زرنگ & دالیا ❤️</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #312e81 0%, #111827 35%, #050816 100%);
+      color: white;
+      overflow-x: hidden;
+      direction: rtl;
+    }
+
+    .hearts {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .heart {
+      position: absolute;
+      color: rgba(255, 105, 180, 0.3);
+      animation: float 8s linear infinite;
+      font-size: 22px;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) scale(0.5);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(-120vh) scale(1.3);
+        opacity: 0;
+      }
+    }
+
+    header {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      max-width: 850px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
+      backdrop-filter: blur(14px);
+      border-radius: 35px;
+      padding: 60px 40px;
+      box-shadow: 0 0 60px rgba(255, 105, 180, 0.25), 0 0 120px rgba(99,102,241,0.15);
+      animation: fadeIn 1.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 250px;
+      height: 250px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
+      top: -80px;
+      right: -80px;
+      filter: blur(10px);
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: rgba(255,105,180,0.08);
+      border-radius: 50%;
+      bottom: -70px;
+      left: -70px;
+      filter: blur(20px);
+    }
+
+    .hero h1 {
+      font-size: 4.5rem;
+      letter-spacing: 3px;
+      text-shadow: 0 0 25px rgba(255,255,255,0.2);
+      margin-bottom: 20px;
+      background: linear-gradient(to right, #ff4da6, #ffd1e8);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      color: #d1d5db;
+      line-height: 2;
+      font-size: 1.2rem;
+    }
+
+    .btn {
+      position: relative;
+      overflow: hidden;
+      margin-top: 35px;
+      padding: 16px 45px;
+      border: none;
+      border-radius: 50px;
+      background: linear-gradient(45deg, #ff2d95, #ff7bc3);
+      color: white;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.4s ease;
+      box-shadow: 0 10px 25px rgba(255, 45, 149, 0.4);
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      transition: 0.5s;
+    }
+
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    .btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 15px 35px rgba(255, 45, 149, 0.6);
+    }
+
+    .message {
+      margin-top: 25px;
+      font-size: 1.2rem;
+      color: #ffd6ea;
+      min-height: 40px;
+    }
+
+    section {
+      padding: 100px 10%;
+    }
+
+    .title {
+      text-align: center;
+      font-size: 2.7rem;
+      margin-bottom: 60px;
+      color: #ffb6d9;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      background: rgba(255,255,255,0.06);
+      border-radius: 25px;
+      padding: 30px;
+      border: 1px solid rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      transition: 0.4s;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.35);
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.05), transparent);
+      opacity: 0;
+      transition: 0.4s;
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(255,105,180,0.3);
+    }
+
+    .card h3 {
+      color: #ff7abf;
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+    }
+
+    .card p {
+      color: #d1d5db;
+      line-height: 1.8;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .photo {
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      height: 280px;
+      border-radius: 25px;
+      background-size: cover;
+      background-position: center;
+      transition: 0.4s;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+    }
+
+    .photo:hover {
+      transform: scale(1.04);
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      background: rgba(255,255,255,0.04);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      color: #d1d5db;
+    }
+
+    @media(max-width:768px) {
+      .hero h1 {
+        font-size: 2.6rem;
+      }
+
+      .hero {
+        padding: 40px 25px;
+      }
+
+      .title {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hearts" id="hearts"></div>
+
+  <header>
+    <div class="hero">
+      <h1>زرنگ ❤️ دالیا</h1>
+
+      <p>
+        چیرۆکی خۆشەویستی هەمووی جوانن،
+        بەڵام چیرۆکی ئێوە تایبەتترینە ✨<br>
+        گەشتێک پڕ لە خۆشی، یادەوەری، و خۆشەویستی بێکۆتایی 💕<br><br>
+        📅 25/2/2024 — دەستپێکی جوانترین چیرۆکی خۆشەویستی
+      </p>
+
+      <button class="btn" onclick="showMessage()">
+        کلیک بکە بۆ خۆشەویستی ✨
+      </button>
+
+      <div class="message" id="message"></div>
+    </div>
+  </header>
+
+  <section>
+    <h2 class="title">چیرۆکی ئێمە 💖</h2>
+
+    <div class="cards">
+      <div class="card">
+        <h3>🌸 یەکەم دیدار</h3>
+        <p>
+          دەستپێکی پەیوەندییەکی جوان کە دڵەکان بە یەکەوە لێیاندا.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>✨ ساتە خۆشەکان</h3>
+        <p>
+          هەر چرکەیەک بەیەکەوە بووە یادەوەرییەکی پڕ لە خەندە و شادی.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>💞 خۆشەویستی هەمیشەیی</h3>
+        <p>
+          پەیوەندییەک کە لەسەر متمانە، گرنگیدان و پشتگیری دروست بووە.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="title">یادەوەرییەکان 📸</h2>
+
+    <div class="gallery">
+      <div class="photo" style="background-image:url('https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=1200&auto=format&fit=crop');"></div>
+
+      <div class="photo" style="background-image:url('https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop');"></div>
+
+      <div class="photo" style="background-image:url('https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1200&auto=format&fit=crop');"></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="title">دەڵۆپەکانی خۆشەویستی 💌</h2>
+
+    <div class="cards">
+      <div class="card">
+        <h3>💖 دڵ</h3>
+        <p>
+          هەر لێدانی دڵ بە ناوی یەکترییە.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>🌙 خەون</h3>
+        <p>
+          خەونەکان جوانتر دەبن کاتێک پێکەوە بن.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>✨ ئایندە</h3>
+        <p>
+          ئایندەیەکی پڕ لە شادی و سەرکەوتن چاوەڕێی ئێوەیە.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    بە خۆشەویستی ❤️ بۆ زرنگ و دالیا | لە 25/2/2024 ـەوە هەمیشە پێکەوە ✨
+  </footer>
+
+  <script>
+    const messages = [
+      'زرنگ ❤️ دالیا هەمیشە',
+      'خۆشەویستی بەهێزترین جادووە ✨',
+      'پێکەوە باشترین شوێنن 💕',
+      'ئێوە خۆشی یەکتریتن 🌸',
+      'چیرۆکی خۆشەویستی کۆتایی نییە 💖'
+    ];
+
+    function showMessage() {
+      const random = messages[Math.floor(Math.random() * messages.length)];
+      document.getElementById('message').innerHTML = random;
+    }
+
+    function createHearts() {
+      const container = document.getElementById('hearts');
+
+      setInterval(() => {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.innerHTML = '❤';
+
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.fontSize = Math.random() * 25 + 15 + 'px';
+        heart.style.animationDuration = Math.random() * 5 + 5 + 's';
+
+        container.appendChild(heart);
+
+        setTimeout(() => {
+          heart.remove();
+        }, 10000);
+      }, 300);
+    }
+
+    createHearts();
+  </script>
+
+</body>
+</html>
