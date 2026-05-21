@@ -7,7 +7,7 @@
     <title>زرنگ & دالیا ❤️</title>
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#ff2d95">
-    <link href="https://fonts.googleapis.com/css2=family=Vazirmatn:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <style>
         * {
@@ -16,11 +16,13 @@
             box-sizing: border-box;
             font-family: 'Vazirmatn', sans-serif;
         }
+        /* گۆڕینی شێوەی ماوس بۆ دڵێکی پەمەیی */
         
         body {
             background: radial-gradient(circle at top, #312e81 0%, #111827 35%, #050816 100%);
             color: white;
             overflow-x: hidden;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23ff2d95" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>'), auto;
         }
         
         .hearts {
@@ -58,6 +60,7 @@
             align-items: center;
             padding: 20px;
             text-align: center;
+            flex-direction: column;
         }
         
         .hero {
@@ -134,11 +137,18 @@
             margin-top: 5px !important;
         }
         
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 35px;
+        }
+        
         .btn {
             position: relative;
             overflow: hidden;
-            margin-top: 35px;
-            padding: 16px 45px;
+            padding: 16px 40px;
             border: none;
             border-radius: 50px;
             background: linear-gradient(45deg, #ff2d95, #ff7bc3);
@@ -148,6 +158,11 @@
             cursor: pointer;
             transition: 0.4s ease;
             box-shadow: 0 10px 25px rgba(255, 45, 149, 0.4);
+        }
+        
+        .btn-letter {
+            background: linear-gradient(45deg, #6366f1, #94a3b8);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
         }
         
         .btn::before {
@@ -167,7 +182,7 @@
         
         .btn:hover {
             transform: scale(1.08);
-            box-shadow: 0 15px 35px rgba(255, 45, 149, 0.6);
+            box-shadow: 0 15px 35px rgba(255, 255, 255, 0.3);
         }
         
         .message {
@@ -235,7 +250,6 @@
             color: #d1d5db;
             line-height: 1.8;
         }
-        /* بەشی نوێ: کارتی هۆکارەکانی خۆشەویستی */
         
         .interactive-note-section {
             display: flex;
@@ -299,7 +313,76 @@
         .photo:hover {
             transform: scale(1.04);
         }
-        /* بەشی نوێ: دوگمەی مۆسیقای سەرئاوکەوتوو */
+        /* ستایلی نامە نهێنییەکە (Modal) */
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: linear-gradient(135deg, #fff0f5, #ffe4e1);
+            padding: 50px 40px;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            animation: popUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 20px 60px rgba(255, 45, 149, 0.5);
+            color: #8b0042;
+        }
+        
+        @keyframes popUp {
+            from {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .modal-content h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: #ff2d95;
+            border-bottom: 2px dashed #ffb6d9;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+        
+        .modal-content p {
+            font-size: 1.2rem;
+            line-height: 2;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            font-size: 35px;
+            color: #ff2d95;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .close-btn:hover {
+            transform: scale(1.2) rotate(90deg);
+            color: #c4005b;
+        }
         
         .music-player-widget {
             position: fixed;
@@ -381,12 +464,6 @@
             .time-box span {
                 font-size: 1.8rem;
             }
-            .music-player-widget {
-                bottom: 20px;
-                right: 20px;
-                width: 50px;
-                height: 50px;
-            }
         }
     </style>
 </head>
@@ -395,11 +472,23 @@
 
     <div class="hearts" id="hearts"></div>
 
-    <!-- دوگمەی مۆسیقای پاشبنەما -->
     <div class="music-player-widget" onclick="togglePlay()">
         <span class="music-icon" id="discIcon">🎵</span>
-        <!-- تێبینی: دەتوانیت لینکی گۆرانییەکە لە بەشی src بگۆڕیت بۆ هەر مۆسیقایەک کە خۆت حەزت لێیە -->
         <audio id="loveSong" loop src="https://www.image2url.com/r2/default/audio/1779372743068-e142c3c2-249b-48bd-9a74-7ecfb0a49c66.mp3"></audio>
+    </div>
+
+    <!-- مۆداڵی نامەی نهێنی -->
+    <div id="letterModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeLetter()">&times;</span>
+            <h2>بۆ دالیا گیان 💌</h2>
+            <p>
+                ئەم ماڵپەڕە تەنها کۆد و نووسین نییە، بەڵکو گوزارشتە لەو عەشقە گەورەیەی لە ناخمدایە بۆ تۆ.<br> تۆ ئەو کەسەی کە ژیانمت بە تەواوی گۆڕی و هەموو ساتەکانت کردم بە ڕووناکی و خەندە.
+            </p>
+            <p style="margin-top: 20px; font-weight: bold; color: #ff2d95;">
+                لەگەڵ عەشقی بێکۆتاییم،<br> زرنگ ❤️
+            </p>
+        </div>
     </div>
 
     <header>
@@ -428,9 +517,10 @@
                 </div>
             </div>
 
-            <button class="btn" onclick="showMessage()">
-                کلیک بکە بۆ خۆشەویستی ✨
-            </button>
+            <div class="btn-group">
+                <button class="btn" onclick="showMessage()">ئەفسوونی خۆشەویستی ✨</button>
+                <button class="btn btn-letter" onclick="openLetter()">نامەیەکی نهێنی 💌</button>
+            </div>
 
             <div class="message" id="message"></div>
         </div>
@@ -451,12 +541,11 @@
 
             <div class="card">
                 <h3>💞 خۆشەویستی هەمیشەیی</h3>
-                <p>پەیوەندییەک کە لەسەر متمانە, گرنگیدان و پشتگیری دروست بووە.</p>
+                <p>پەیوەندییەک کە لەسەر متمانە، گرنگیدان و پشتگیری دروست بووە.</p>
             </div>
         </div>
     </section>
 
-    <!-- بەشی نوێ: هۆکارەکانی خۆشەویستی -->
     <section>
         <h2 class="title">بۆچی خۆشم دەوێیت؟ 🔐</h2>
         <div class="interactive-note-section">
@@ -486,42 +575,26 @@
                 <h3>💖 دڵ</h3>
                 <p>هەر لێدانی دڵ بە ناوی یەکترییە.</p>
             </div>
-
             <div class="card">
                 <h3>🌙 خەون</h3>
                 <p>خەونەکان جوانتر دەبن کاتێک پێکەوە بن.</p>
             </div>
-
             <div class="card">
                 <h3>✨ ئایندە</h3>
                 <p>ئایندەیەکی پڕ لە شادی و سەرکەوتن چاوەڕێی ئێوەیە.</p>
             </div>
-
             <div class="card">
                 <h3>💖 تایبەتترین نازناوەکان</h3>
                 <p>(شاژنەکەم، پاشاکەم، باوانەکەم، بۆگەنەکەم، بوون و نەبوونم، ئەبەدیەکەم، ئەزیزی ڕۆحم، گەورەی ماڵەکەم ❤️)</p>
             </div>
-
             <div class="card">
                 <h3>💌 پەیام</h3>
                 <p>دالیا گیان، تۆ جوانترین ڕووداوی ژیانمی. هەرکاتێک لەگەڵ تۆم دڵم ئارامە 💕</p>
             </div>
-
-            <div class="card">
-                <h3>🌸 یەکەم دیدار</h3>
-                <p>دەستپێکی پەیوەندییەکی جوان کە دڵەکان بە یەکەوە لێیاندا.</p>
-            </div>
-
             <div class="card">
                 <h3>🎁 دیاری</h3>
                 <p>هەر ساتێک لەگەڵ تۆ باشترین دیارییە ❤️</p>
             </div>
-
-            <div class="card">
-                <h3>💖 خۆشەویستی</h3>
-                <p>خۆشەویستییەکی بێکۆتایی کە لەسەر متمانە و پشتگیری دروست بووە.</p>
-            </div>
-
             <div class="card">
                 <h3>✨ ئەو ناوانەی حەزمان لێیە بۆ منداڵەکانمان</h3>
                 <p>بۆ کچ: "زین، یۆڤان" | بۆ کوڕ: "زەند، لۆڤان"</p>
@@ -542,7 +615,6 @@
             'چیرۆکی خۆشەویستی کۆتایی نییە 💖'
         ];
 
-        // لیستی هۆکارەکانی خۆشەویستی بۆ بەشە نوێیەکە
         const loveReasons = [
             "چونکە لەگەڵ تۆدا، خۆم بە دڵخۆشترین کەسی دنیا دەزانم 🌟",
             "چونکە پێکەنینەکانت هەموو خەمەکانی دڵم دەشۆنەوە چرکەبەچرکە 🤍",
@@ -568,7 +640,6 @@
             document.getElementById('message').innerHTML = random;
         }
 
-        // لۆجیکی مۆسیقا پاشبنەما
         function togglePlay() {
             const audio = document.getElementById('loveSong');
             const icon = document.getElementById('discIcon');
@@ -578,6 +649,24 @@
             } else {
                 audio.pause();
                 icon.classList.remove('music-playing');
+            }
+        }
+
+        // کۆنتڕۆڵی مۆداڵی نامەکە
+        const modal = document.getElementById("letterModal");
+
+        function openLetter() {
+            modal.style.display = "flex";
+        }
+
+        function closeLetter() {
+            modal.style.display = "none";
+        }
+
+        // داخرانی مۆداڵەکە کاتێک کلیک لە دەرەوەی دەکرێت
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
             }
         }
 
@@ -622,12 +711,6 @@
         }
 
         createHearts();
-
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js')
-                .then(() => console.log("PWA Ready ❤️"))
-                .catch(err => console.log("Error", err));
-        }
     </script>
 
 </body>
