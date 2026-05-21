@@ -5,7 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>زرنگ & دالیا ❤️</title>
-
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#ff2d95">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <style>
@@ -363,7 +364,7 @@
             <div class="card">
                 <h3>💖 تایبەت ترین نازناوەکان</h3>
                 <p>
-                    (شاژنەکەم، پاشاکەم، باوانەکەم، بۆگەنەکەم، بوون و نەبوونم، ئەبەدیەکەم، ئەزیزی ڕۆحم ❤️)
+                    (شاژنەکەم، پاشاکەم، باوانەکەم، بۆگەنەکەم، بوون و نەبوونم، ئەبەدیەکەم، ئەزیزی ڕۆحم، گەورەی ماڵەکەم ❤️)
                 </p>
             </div>
 
@@ -443,6 +444,13 @@
         }
 
         createHearts();
+
+
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js')
+                .then(() => console.log("PWA Ready ❤️"))
+                .catch(err => console.log("Error", err));
+        }
     </script>
 
 </body>
