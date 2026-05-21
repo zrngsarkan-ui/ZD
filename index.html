@@ -285,7 +285,7 @@
             min-height: 50px;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
-        /* نوێکاری بەشی گەلەری و یادەوەرییەکان */
+        /* چاککردنی بەشی گەلەری بۆ مۆبایل و کۆمپیوتەر */
         
         .gallery {
             display: grid;
@@ -295,7 +295,7 @@
         
         .photo {
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-            height: 280px;
+            height: 320px;
             border-radius: 25px;
             background-size: cover;
             background-position: center;
@@ -303,12 +303,13 @@
             overflow: hidden;
             position: relative;
         }
+        /* پاشبنەمای ڕەشی سەر وێنەکە بۆ ئەوەی دەقەکە هەمیشە بخوێندرێتەوە */
         
         .photo::after {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.2) 60%, transparent 100%);
             transition: 0.4s ease;
             z-index: 1;
         }
@@ -317,37 +318,59 @@
             transform: scale(1.04);
             box-shadow: 0 15px 40px rgba(255, 45, 149, 0.3);
         }
-        
-        .photo:hover::after {
-            background: linear-gradient(to top, rgba(255, 45, 149, 0.75), rgba(17, 24, 39, 0.4));
-        }
-        /* بەشی دەق لەسەر وێنە لە کاتی هۆڤەردا */
+        /* بەشی دەقی سەر وێنەکان */
         
         .photo-overlay {
             position: absolute;
             inset: 0;
             display: flex;
             justify-content: center;
-            align-items: center;
-            padding: 20px;
+            align-items: flex-end;
+            /* هێنانە خوارەوەی دەقەکە بۆ مۆبایل */
+            padding: 25px 20px;
             text-align: center;
             z-index: 2;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-        
-        .photo:hover .photo-overlay {
-            opacity: 1;
-            transform: translateY(0);
+            transition: 0.4s ease;
         }
         
         .photo-overlay span {
             color: white;
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             font-weight: 600;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
             line-height: 1.6;
+            background: rgba(255, 45, 149, 0.25);
+            padding: 8px 15px;
+            border-radius: 15px;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+        }
+        /* لێرەدا کێشەی کۆمپیوتەر و مۆبایل جیا دەکەینەوە بە Media Queries */
+        
+        @media(min-width: 769px) {
+            /* بۆ سەر کۆمپیوتەر: تەنها کاتێک ماوس دەبرێتە سەری دەردەکەوێت */
+            .photo::after {
+                background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+            }
+            .photo:hover::after {
+                background: linear-gradient(to top, rgba(255, 45, 149, 0.75), rgba(17, 24, 39, 0.4));
+            }
+            .photo-overlay {
+                align-items: center;
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            .photo:hover .photo-overlay {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            .photo-overlay span {
+                background: transparent;
+                border: none;
+                backdrop-filter: none;
+                font-size: 1.3rem;
+            }
         }
         /* ستایلی نامە نهێنییەکە (Modal) */
         
@@ -593,7 +616,7 @@
         </div>
     </section>
 
-    <!-- بەشی نوێکراوەی یادەوەرییەکان لەگەڵ دەقی ڕۆمانسی هۆڤەر -->
+    <!-- بەشی یادەوەرییەکان - چاککراو بۆ مۆبایل -->
     <section>
         <h2 class="title">یادەوەرییەکان 📸</h2>
         <div class="gallery">
@@ -636,7 +659,7 @@
             </div>
             <div class="card">
                 <h3>💌 پەیام</h3>
-                <p>دالیا گیان، تۆ جوانترین ڕووداوی ژیانمی. هەرکاتێک لەگەڵ تۆم دڵم ئارامە 💕</p>
+                <p>داليا گیان، تۆ جوانترین ڕووداوی ژیانمی. هەرکاتێک لەگەڵ تۆم دڵم ئارامە 💕</p>
             </div>
             <div class="card">
                 <h3>🎁 دیاری</h3>
