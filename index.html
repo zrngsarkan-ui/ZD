@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ku">
+<html lang="ku" dir="rtl">
 
 <head>
     <meta charset="UTF-8" />
@@ -7,21 +7,20 @@
     <title>زرنگ & دالیا ❤️</title>
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#ff2d95">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2=family=Vazirmatn:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Vazirmatn', sans-serif;
         }
         
         body {
             background: radial-gradient(circle at top, #312e81 0%, #111827 35%, #050816 100%);
             color: white;
             overflow-x: hidden;
-            direction: rtl;
         }
         
         .hearts {
@@ -85,33 +84,9 @@
             }
         }
         
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 250px;
-            height: 250px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 50%;
-            top: -80px;
-            right: -80px;
-            filter: blur(10px);
-        }
-        
-        .hero::after {
-            content: '';
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            background: rgba(255, 105, 180, 0.08);
-            border-radius: 50%;
-            bottom: -70px;
-            left: -70px;
-            filter: blur(20px);
-        }
-        
         .hero h1 {
-            font-size: 4.5rem;
-            letter-spacing: 3px;
+            font-size: 4rem;
+            letter-spacing: 1px;
             text-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
             margin-bottom: 20px;
             background: linear-gradient(to right, #ff4da6, #ffd1e8);
@@ -126,6 +101,39 @@
             font-size: 1.2rem;
         }
         
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px auto 10px auto;
+            flex-wrap: wrap;
+            direction: ltr;
+        }
+        
+        .time-box {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 12px 20px;
+            border-radius: 20px;
+            min-width: 90px;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .time-box span {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #ff7bc3;
+            display: block;
+            line-height: 1.2;
+        }
+        
+        .time-box p {
+            font-size: 0.9rem !important;
+            color: #e5e7eb;
+            margin-top: 5px !important;
+        }
+        
         .btn {
             position: relative;
             overflow: hidden;
@@ -135,7 +143,7 @@
             border-radius: 50px;
             background: linear-gradient(45deg, #ff2d95, #ff7bc3);
             color: white;
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: bold;
             cursor: pointer;
             transition: 0.4s ease;
@@ -164,25 +172,26 @@
         
         .message {
             margin-top: 25px;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: #ffd6ea;
             min-height: 40px;
+            font-weight: 600;
         }
         
         section {
-            padding: 100px 10%;
+            padding: 80px 10%;
         }
         
         .title {
             text-align: center;
-            font-size: 2.7rem;
+            font-size: 2.5rem;
             margin-bottom: 60px;
             color: #ffb6d9;
         }
         
         .cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
         }
         
@@ -226,6 +235,42 @@
             color: #d1d5db;
             line-height: 1.8;
         }
+        /* بەشی نوێ: کارتی هۆکارەکانی خۆشەویستی */
+        
+        .interactive-note-section {
+            display: flex;
+            justify-content: center;
+            margin-top: -20px;
+            margin-bottom: 40px;
+        }
+        
+        .love-reason-card {
+            background: linear-gradient(135deg, rgba(255, 45, 149, 0.15), rgba(99, 102, 241, 0.15));
+            border: 2px dashed rgba(255, 105, 180, 0.4);
+            border-radius: 30px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s ease;
+            backdrop-filter: blur(8px);
+        }
+        
+        .love-reason-card:hover {
+            transform: scale(1.02);
+            border-color: rgba(255, 105, 180, 0.8);
+            box-shadow: 0 0 30px rgba(255, 45, 149, 0.3);
+        }
+        
+        .reason-text {
+            font-size: 1.4rem;
+            color: #fff;
+            margin-top: 15px;
+            font-weight: 600;
+            min-height: 50px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
         
         .gallery {
             display: grid;
@@ -254,6 +299,61 @@
         .photo:hover {
             transform: scale(1.04);
         }
+        /* بەشی نوێ: دوگمەی مۆسیقای سەرئاوکەوتوو */
+        
+        .music-player-widget {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+            background: rgba(255, 45, 149, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3), 0 0 15px rgba(255, 45, 149, 0.4);
+            transition: 0.3s ease;
+        }
+        
+        .music-player-widget:hover {
+            transform: scale(1.1);
+            background: rgba(255, 45, 149, 0.4);
+        }
+        
+        .music-icon {
+            font-size: 1.6rem;
+            animation: pulse 2s infinite;
+        }
+        
+        .music-playing {
+            animation: rotateDisk 4s linear infinite !important;
+        }
+        
+        @keyframes rotateDisk {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.08);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
         
         footer {
             text-align: center;
@@ -261,6 +361,7 @@
             background: rgba(255, 255, 255, 0.04);
             border-top: 1px solid rgba(255, 255, 255, 0.08);
             color: #d1d5db;
+            font-size: 1rem;
         }
         
         @media(max-width:768px) {
@@ -273,6 +374,19 @@
             .title {
                 font-size: 2rem;
             }
+            .time-box {
+                min-width: 75px;
+                padding: 10px 12px;
+            }
+            .time-box span {
+                font-size: 1.8rem;
+            }
+            .music-player-widget {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+            }
         }
     </style>
 </head>
@@ -281,17 +395,42 @@
 
     <div class="hearts" id="hearts"></div>
 
+    <!-- دوگمەی مۆسیقای پاشبنەما -->
+    <div class="music-player-widget" onclick="togglePlay()">
+        <span class="music-icon" id="discIcon">🎵</span>
+        <!-- تێبینی: دەتوانیت لینکی گۆرانییەکە لە بەشی src بگۆڕیت بۆ هەر مۆسیقایەک کە خۆت حەزت لێیە -->
+        <audio id="loveSong" loop src="https://www.image2url.com/r2/default/audio/1779372743068-e142c3c2-249b-48bd-9a74-7ecfb0a49c66.mp3"></audio>
+    </div>
+
     <header>
         <div class="hero">
             <h1>زرنگ ❤️ دالیا</h1>
-
             <p>
                 چیرۆکی خۆشەویستی هەمووی جوانن، بەڵام چیرۆکی ئێوە تایبەتترینە ✨<br> گەشتێک پڕ لە خۆشی، یادەوەری، و خۆشەویستی بێکۆتایی 💕<br><br> 📅 25/2/2024 — دەستپێکی جوانترین چیرۆکی خۆشەویستی
             </p>
 
+            <div class="countdown-container">
+                <div class="time-box">
+                    <span id="seconds">00</span>
+                    <p>چرکە</p>
+                </div>
+                <div class="time-box">
+                    <span id="minutes">00</span>
+                    <p>خولەک</p>
+                </div>
+                <div class="time-box">
+                    <span id="hours">00</span>
+                    <p>کاتژمێر</p>
+                </div>
+                <div class="time-box">
+                    <span id="days">00</span>
+                    <p>ڕۆژ</p>
+                </div>
+            </div>
+
             <button class="btn" onclick="showMessage()">
-        کلیک بکە بۆ خۆشەویستی ✨
-      </button>
+                کلیک بکە بۆ خۆشەویستی ✨
+            </button>
 
             <div class="message" id="message"></div>
         </div>
@@ -299,53 +438,50 @@
 
     <section>
         <h2 class="title">چیرۆکی ئێمە 💖</h2>
-
         <div class="cards">
             <div class="card">
                 <h3>🌸 یەکەم دیدار</h3>
-                <p>
-                    دەستپێکی پەیوەندییەکی جوان کە دڵەکان بە یەکەوە لێیاندا.
-                </p>
+                <p>دەستپێکی پەیوەندییەکی جوان کە دڵەکان بە یەکەوە لێیاندا.</p>
             </div>
 
             <div class="card">
                 <h3>✨ ساتە خۆشەکان</h3>
-                <p>
-                    هەر چرکەیەک بەیەکەوە بووە یادەوەرییەکی پڕ لە خەندە و شادی.
-                </p>
+                <p>هەر چرکەیەک بەیەکەوە بووە یادەوەرییەکی پڕ لە خەندە و شادی.</p>
             </div>
 
             <div class="card">
                 <h3>💞 خۆشەویستی هەمیشەیی</h3>
-                <p>
-                    پەیوەندییەک کە لەسەر متمانە، گرنگیدان و پشتگیری دروست بووە.
-                </p>
+                <p>پەیوەندییەک کە لەسەر متمانە, گرنگیدان و پشتگیری دروست بووە.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- بەشی نوێ: هۆکارەکانی خۆشەویستی -->
+    <section>
+        <h2 class="title">بۆچی خۆشم دەوێیت؟ 🔐</h2>
+        <div class="interactive-note-section">
+            <div class="love-reason-card" onclick="nextReason()">
+                <span style="font-size: 2.5rem;">💝</span>
+                <p class="reason-text" id="reasonLabel">کلیک لێرە بکە بۆ دەرکەوتنی هۆکارەکان...</p>
+                <p style="font-size: 0.85rem; color: #ffb6d9; margin-top: 15px; opacity: 0.7;">(بۆ بینینی هۆکاری تر، دووبارە کلیک بکەرەوە)</p>
             </div>
         </div>
     </section>
 
     <section>
         <h2 class="title">یادەوەرییەکان 📸</h2>
-
         <div class="gallery">
             <div class="photo" style="background-image:url('https://cdn.corenexis.com/files/c/1878743720.jpg');"></div>
-
             <div class="photo" style="background-image:url('https://cdn.corenexis.com/files/c/8861559720.jpg');"></div>
-
             <div class="photo" style="background-image:url('https://cdn.corenexis.com/files/c/1637433720.jpg');"></div>
-
             <div class="photo" style="background-image:url('https://cdn.corenexis.com/files/c/9484218720.jpg');"></div>
-
             <div class="photo" style="background-image:url('https://cdn.corenexis.com/files/c/6483513720.jpg');"></div>
         </div>
     </section>
 
     <section>
         <h2 class="title">دەڵۆپەکانی خۆشەویستی 💌</h2>
-
-
         <div class="cards">
-
             <div class="card">
                 <h3>💖 دڵ</h3>
                 <p>هەر لێدانی دڵ بە ناوی یەکترییە.</p>
@@ -362,47 +498,35 @@
             </div>
 
             <div class="card">
-                <h3>💖 تایبەت ترین نازناوەکان</h3>
-                <p>
-                    (شاژنەکەم، پاشاکەم، باوانەکەم، بۆگەنەکەم، بوون و نەبوونم، ئەبەدیەکەم، ئەزیزی ڕۆحم، گەورەی ماڵەکەم ❤️)
-                </p>
+                <h3>💖 تایبەتترین نازناوەکان</h3>
+                <p>(شاژنەکەم، پاشاکەم، باوانەکەم، بۆگەنەکەم، بوون و نەبوونم، ئەبەدیەکەم، ئەزیزی ڕۆحم، گەورەی ماڵەکەم ❤️)</p>
             </div>
 
             <div class="card">
                 <h3>💌 پەیام</h3>
-                <p>
-                    دالیا گیان، تۆ جوانترین ڕووداوی ژیانمی. هەرکاتێک لەگەڵ تۆم دڵم ئارامە 💕
-                </p>
+                <p>دالیا گیان، تۆ جوانترین ڕووداوی ژیانمی. هەرکاتێک لەگەڵ تۆم دڵم ئارامە 💕</p>
             </div>
 
             <div class="card">
                 <h3>🌸 یەکەم دیدار</h3>
-                <p>
-                    دەستپێکی پەیوەندییەکی جوان کە دڵەکان بە یەکەوە لێیاندا.
-                </p>
+                <p>دەستپێکی پەیوەندییەکی جوان کە دڵەکان بە یەکەوە لێیاندا.</p>
             </div>
 
             <div class="card">
                 <h3>🎁 دیاری</h3>
-                <p>
-                    هەر ساتێک لەگەڵ تۆ باشترین دیارییە ❤️
-                </p>
+                <p>هەر ساتێک لەگەڵ تۆ باشترین دیارییە ❤️</p>
             </div>
 
             <div class="card">
                 <h3>💖 خۆشەویستی</h3>
-                <p>
-                    خۆشەویستییەکی بێکۆتایی کە لەسەر متمانە و پشتگیری دروست بووە.
-                </p>
+                <p>خۆشەویستییەکی بێکۆتایی کە لەسەر متمانە و پشتگیری دروست بووە.</p>
             </div>
+
             <div class="card">
                 <h3>✨ ئەو ناوانەی حەزمان لێیە بۆ منداڵەکانمان</h3>
-                <p>
-                    ("بۆ کج "زین،یۆڤان" بۆ کوڕ "زەند،لۆڤان)
-                </p>
+                <p>بۆ کچ: "زین، یۆڤان" | بۆ کوڕ: "زەند، لۆڤان"</p>
             </div>
-
-
+        </div>
     </section>
 
     <footer>
@@ -418,10 +542,64 @@
             'چیرۆکی خۆشەویستی کۆتایی نییە 💖'
         ];
 
+        // لیستی هۆکارەکانی خۆشەویستی بۆ بەشە نوێیەکە
+        const loveReasons = [
+            "چونکە لەگەڵ تۆدا، خۆم بە دڵخۆشترین کەسی دنیا دەزانم 🌟",
+            "چونکە پێکەنینەکانت هەموو خەمەکانی دڵم دەشۆنەوە چرکەبەچرکە 🤍",
+            "چونکە متمانە و پشتگیری تۆ گەورەترین هێزە بۆ ژیانم دایمە 💎",
+            "چونکە تۆ تەنها خۆشەویستم نیت، بەڵکو تەواوکەری ڕۆح و بوونمی 🌸",
+            "چونکە لە قورسترین ساتەکاندا، تەنها بیرکردنەوە لە تۆ دڵم ئارام دەکاتەوە 💕"
+        ];
+
+        let reasonIndex = 0;
+
+        function nextReason() {
+            const label = document.getElementById('reasonLabel');
+            label.style.opacity = 0;
+            setTimeout(() => {
+                label.innerText = loveReasons[reasonIndex];
+                label.style.opacity = 1;
+                reasonIndex = (reasonIndex + 1) % loveReasons.length;
+            }, 200);
+        }
+
         function showMessage() {
             const random = messages[Math.floor(Math.random() * messages.length)];
             document.getElementById('message').innerHTML = random;
         }
+
+        // لۆجیکی مۆسیقا پاشبنەما
+        function togglePlay() {
+            const audio = document.getElementById('loveSong');
+            const icon = document.getElementById('discIcon');
+            if (audio.paused) {
+                audio.play();
+                icon.classList.add('music-playing');
+            } else {
+                audio.pause();
+                icon.classList.remove('music-playing');
+            }
+        }
+
+        const startDate = new Date('2024-02-25T00:00:00');
+
+        function updateCountUp() {
+            const now = new Date();
+            const difference = now - startDate;
+
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = days;
+            document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
+        }
+
+        updateCountUp();
+        setInterval(updateCountUp, 1000);
 
         function createHearts() {
             const container = document.getElementById('hearts');
@@ -444,7 +622,6 @@
         }
 
         createHearts();
-
 
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('sw.js')
