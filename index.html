@@ -2,6 +2,7 @@
 <html lang="ku" dir="rtl">
 
 <head>
+    <link rel="icon" href="path-to-your-heart-icon.png">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>زرنگ & دالیا ❤️</title>
@@ -781,6 +782,13 @@
 </head>
 
 <body>
+    <!-- مۆداڵی پاسۆرد -->
+    <div id="passwordModal" style="position: fixed; inset: 0; background: #030712; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; text-align: center; padding: 20px;">
+        <h2 style="margin-bottom: 20px; color: #ff2d95;">بەخێر بێیت بۆ جیهانی خۆشەویستی ❤️</h2>
+        <p style="margin-bottom: 20px;">تکایە وشەی نهێنی بنووسە بۆ بینینی لاپەڕەکە:</p>
+        <input type="password" id="passInput" style="padding: 10px; border-radius: 10px; border: none; width: 200px; text-align: center; margin-bottom: 10px;" placeholder="وشەی نهێنی">
+        <button onclick="checkPassword()" style="padding: 10px 20px; border-radius: 10px; border: none; background: #ff2d95; color: white; cursor: pointer;">چوونە ژوورەوە</button>
+    </div>
 
     <div class="hearts" id="hearts"></div>
 
@@ -1110,8 +1118,99 @@
 
         window.addEventListener('scroll', revealSections);
         window.addEventListener('load', revealSections);
-    </script>
+        const discIcon = document.getElementById('discIcon');
+        const mainPlayPauseBtn = document.getElementById('mainPlayPauseBtn');
 
+        function togglePlayPause() {
+            if (audio.paused) {
+                audio.play();
+                mainPlayPauseBtn.innerText = '⏸';
+                discIcon.classList.add('music-playing');
+            } else {
+                audio.pause();
+                mainPlayPauseBtn.innerText = '▶';
+                discIcon.classList.remove('music-playing');
+            }
+        }
+
+        function togglePlaylistView() {
+            const panel = document.getElementById('playlistPanel');
+            panel.style.display = (panel.style.display === 'block') ? 'none' : 'block';
+        }
+
+        function changeTrack(index, element, name) {
+            audio.src = tracks[index];
+            audio.play();
+            mainPlayPauseBtn.innerText = '⏸';
+            discIcon.classList.add('music-playing');
+
+            document.getElementById('currentTrackLabel').innerText = name;
+
+            document.querySelectorAll('.track-item').forEach(item => item.classList.remove('active-track'));
+            element.classList.add('active-track');
+        }
+
+        // نامەی نهێنی
+        function openLetter() {
+            document.getElementById('letterModal').style.display = 'flex';
+        }
+
+        function closeLetter() {
+            document.getElementById('letterModal').style.display = 'none';
+        }
+
+        // هەژمارکردنی کات (Countdown)
+        function updateCountdown() {
+            const startDate = new Date('2024-02-25T00:00:00');
+            const now = new Date();
+            const diff = now - startDate;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = String(days).padStart(2, '0');
+            document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+            document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+        }
+        setInterval(updateCountdown, 1000);
+
+        // دروستکردنی دڵە فڕیوەکان
+        function createHearts() {
+            const container = document.getElementById('hearts');
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '❤';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = Math.random() * 5 + 5 + 's';
+                heart.style.opacity = Math.random();
+                container.appendChild(heart);
+            }
+        }
+        createHearts();
+
+        // سکڕۆڵ سکشن
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        });
+        document.querySelectorAll('.scroll-section').forEach(s => observer.observe(s));
+
+        function checkPassword() {
+            const input = document.getElementById('passInput').value;
+            const correctPassword = "2522024"; // لێرە پاسۆردەکە بگۆڕە
+
+            if (input === correctPassword) {
+                document.getElementById('passwordModal').style.display = 'none';
+            } else {
+                alert("ئای! پاسۆردەکە هەڵەیە، دیسان هەوڵ بدەرەوە ❤️");
+            }
+        }
+    </script>
 </body>
 
 </html>
