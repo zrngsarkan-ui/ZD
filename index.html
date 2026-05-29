@@ -803,6 +803,56 @@
             transform: scale(1.02);
         }
     </style>
+    <style>
+        .audio-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 40px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            width: fit-content;
+        }
+        
+        .play-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: none;
+            background: linear-gradient(135deg, #ff2d95, #ff7bc3);
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 20px rgba(255, 45, 149, 0.3);
+            transition: 0.3s;
+        }
+        
+        .play-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 30px rgba(255, 45, 149, 0.5);
+        }
+        
+        .audio-text {
+            font-size: 1.1rem;
+            color: #ffd6ea;
+            font-weight: 600;
+        }
+    </style>
+
+    <div class="audio-container">
+        <button class="play-btn" id="playBtn" onclick="toggleAudio()">▶</button>
+        <div class="audio-text">جوانترین نامەی دەنگی🎙️</div>
+        <audio id="myVoice">
+        <source src="https://www.image2url.com/r2/default/audio/1780082859556-a99a588c-b648-4541-bdbe-ab132df50c38.mp3" type="audio/mpeg">
+    </audio>
+    </div>
 </head>
 
 <body>
@@ -876,6 +926,26 @@
     </div>
 
     <header>
+
+
+        <script>
+            function toggleAudio() {
+                var audio = document.getElementById("myVoice");
+                var btn = document.getElementById("playBtn");
+
+                if (audio.paused) {
+                    audio.play().then(() => {
+                        btn.innerHTML = "⏸️ وەستاندن";
+                    }).catch(error => {
+                        console.log("هەڵەیەک ڕوویدا: ", error);
+                        alert("کێشەیەک لە پەیوەندی بە فایلەکە هەیە، دڵنیابە لە لینکەکەت.");
+                    });
+                } else {
+                    audio.pause();
+                    btn.innerHTML = "▶️ گوێگرتن";
+                }
+            }
+        </script>
         <div class="hero">
             <h1>زرنگ ❤️ دالیا</h1>
             <p>
@@ -1309,8 +1379,78 @@
         function closeSecret() {
             document.getElementById('secretModal').style.display = 'none';
         }
-    </script>
 
+        function toggleAudio() {
+            var audio = document.getElementById("voiceMessage");
+            var btn = document.getElementById("playPauseBtn");
+
+            if (audio.paused) {
+                audio.play();
+                btn.innerHTML = "⏸️ وەستاندن";
+            } else {
+                audio.pause();
+                btn.innerHTML = "▶️ گوێگرتن";
+            }
+        }
+    </script>
+    <script>
+        // کۆدی دەنگ (گوێگرتن)
+        function toggleAudio() {
+            var audio = document.getElementById("myVoice");
+            var btn = document.getElementById("playBtn");
+
+            if (audio.paused) {
+                audio.play().then(() => {
+                    btn.innerHTML = "⏸️ وەستاندن";
+                }).catch(e => {
+                    console.error("Audio play failed:", e);
+                    alert("تکایە دڵنیابە لە لینکەکەت یان پەیوەندی ئینتەرنێت.");
+                });
+            } else {
+                audio.pause();
+                btn.innerHTML = "▶️ گوێگرتن";
+            }
+        }
+
+        // کۆدی ئۆتۆماتیکی ڕۆژەکان
+        function updateCountdown() {
+            const startDate = new Date("2024-02-25T00:00:00");
+            const now = new Date();
+            const diff = now - startDate;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days;
+            document.getElementById("hours").innerText = hours;
+            document.getElementById("minutes").innerText = minutes;
+            document.getElementById("seconds").innerText = seconds;
+        }
+        setInterval(updateCountdown, 1000);
+
+        // نامەی نهێنی
+        function openLetter() {
+            document.getElementById("letterModal").style.display = "flex";
+        }
+
+        function closeLetter() {
+            document.getElementById("letterModal").style.display = "none";
+        }
+
+        // شتە زیادەکان
+        function showMessage() {
+            document.getElementById("message").innerText = "خۆشەویستیم بۆ تۆ وەک ئەم سایتە بێکۆتاییە ❤️";
+        }
+
+        // بۆ ئەوەی سکڕۆڵ کاتێک ئیش بکات
+        window.addEventListener('scroll', () => {
+            document.querySelectorAll('section').forEach(sec => {
+                if (window.scrollY > sec.offsetTop - 500) sec.classList.add('visible');
+            });
+        });
+    </script>
 </body>
 
 </html>
