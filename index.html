@@ -844,6 +844,53 @@
             color: #ffd6ea;
             font-weight: 600;
         }
+        
+        .audio-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin: 30px auto;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 25px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            max-width: 300px;
+        }
+        
+        .play-btn {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: none;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(255, 154, 158, 0.4);
+            transition: all 0.3s ease;
+        }
+        /* لێرەدا دەڵێین کە بە هیچ جۆرێک گەورە نەبێت لە کاتی ماوس بەسەردابرندا */
+        
+        .play-btn:hover {
+            transform: scale(1) !important;
+            box-shadow: 0 8px 25px rgba(255, 154, 158, 0.6);
+            background: linear-gradient(45deg, #ff7bc3, #ff9a9e);
+        }
+        
+        .audio-text {
+            font-family: 'Segoe UI', sans-serif;
+            color: #fff;
+            font-weight: 500;
+            letter-spacing: 1px;
+            font-size: 14px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
     </style>
 
     < </head>
@@ -971,15 +1018,15 @@
 
                     <div class="message" id="message"></div>
                 </div>
+
                 <div class="audio-container">
                     <button class="play-btn" id="playBtn" onclick="toggleAudio()">▶</button>
-
-                    <div class="audio-text">جوانترین نامەی دەنگی🎙️</div>
-
+                    <div class="audio-text">جوانترین نامەی دەنگی 🎙️</div>
                     <audio id="myVoice">
         <source src="https://www.image2url.com/r2/default/audio/1780082859556-a99a588c-b648-4541-bdbe-ab132df50c38.mp3" type="audio/mpeg">
     </audio>
                 </div>
+
 
             </header>
 
