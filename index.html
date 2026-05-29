@@ -10,6 +10,9 @@
     <meta name="theme-color" content="#ff2d95">
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700&display=swap" rel="stylesheet">
 
+
+
+
     <style>
         * {
             margin: 0;
@@ -20,10 +23,17 @@
         }
         
         body {
-            background: radial-gradient(circle at top, #2e1065 0%, #111827 45%, #030712 100%);
+            /* ئەمە ڕەنگە تاریک و بنەوشەیییەکەی وێنەکەتە */
+            background: radial-gradient(circle at 50% 50%, #2e1065 0%, #111827 45%, #030712 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            margin: 0;
             color: white;
-            overflow-x: hidden;
-            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23ff2d95" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>'), auto;
+        }
+        /* بۆ ئەوەی ئەو شێوە بازنەیییە تۆخەی وێنەکەت هەبێت */
+        
+        header {
+            background: radial-gradient(circle at center, rgba(46, 16, 101, 0.3) 0%, transparent 70%);
         }
         /* دڵە فڕیوەکان */
         
@@ -778,18 +788,51 @@
                 right: 20px;
             }
         }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: 0.3s;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.02);
+        }
     </style>
 </head>
 
 <body>
-    <!-- مۆداڵی پاسۆرد -->
-    <div id="passwordModal" style="position: fixed; inset: 0; background: #030712; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; text-align: center; padding: 20px;">
-        <h2 style="margin-bottom: 20px; color: #ff2d95;">بەخێر بێیت بۆ جیهانی خۆشەویستی ❤️</h2>
-        <p style="margin-bottom: 20px;">تکایە وشەی نهێنی بنووسە بۆ بینینی لاپەڕەکە:</p>
-        <input type="password" id="passInput" style="padding: 10px; border-radius: 10px; border: none; width: 200px; text-align: center; margin-bottom: 10px;" placeholder="وشەی نهێنی">
-        <button onclick="checkPassword()" style="padding: 10px 20px; border-radius: 10px; border: none; background: #ff2d95; color: white; cursor: pointer;">چوونە ژوورەوە</button>
+
+    <canvas id="heartCanvas" style="position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:999;"></canvas>
+
+    <div id="passwordModal" style="position:fixed; inset:0; background:radial-gradient(circle, #2e1065, #030712); display:flex; align-items:center; justify-content:center; z-index:9999;">
+        <div style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(15px); padding: 40px; border-radius: 30px; border: 1px solid rgba(255, 255, 255, 0.2); text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.5); animation: breathe 3s infinite alternate;">
+
+            <h2 style="color: white; font-family: 'Lalezar', cursive; margin-bottom: 20px;">فەرموو دڵی من ❤️</h2>
+            <p style="color: #ffb6d9; margin-bottom: 20px;">تەنها پاسۆردەکەت بنووسە بۆ کردنەوەی نهێنییەکانی دڵم</p>
+
+            <input type="password" id="passInput" placeholder="••••" style="width: 200px; padding: 12px; border-radius: 50px; border: none; text-align: center; background: rgba(255,255,255,0.9); font-size: 1.2rem; outline: none;">
+            <br>
+            <button onclick="checkPassword()" style="margin-top: 20px; padding: 12px 40px; border-radius: 50px; border: none; background: #ff2d95; color: white; font-weight: bold; cursor: pointer; transition: 0.3s;">کردنەوە</button>
+        </div>
     </div>
 
+    <style>
+        @keyframes breathe {
+            from {
+                transform: scale(1);
+                box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            }
+            to {
+                transform: scale(1.02);
+                box-shadow: 0 20px 70px rgba(255, 45, 149, 0.3);
+            }
+        }
+    </style>
     <div class="hearts" id="hearts"></div>
 
     <!-- پێکهاتەی پلەیەرەکە لەگەڵ دوگمەی وەستاندن -->
@@ -867,6 +910,13 @@
         </div>
     </header>
 
+    <div id="secretModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:2000; align-items:center; justify-content:center;">
+        <div style="background:white; padding:40px; border-radius:30px; text-align:center; color:#8b0042; max-width:300px;">
+            <h2 style="font-family: 'Lalezar', cursive;">تایبەت بۆ دالیا ✨</h2>
+            <p>تەنها تۆ کلیلی دڵی منی. بوونی تۆ لە ژیانمدا گەورەترین دیارییە کە خودا پێی بەخشیوم. خۆشم دەوێیت! ❤️</p>
+            <button onclick="closeSecret()" style="margin-top:20px; padding:10px 30px; background:#ff2d95; color:white; border:none; border-radius:20px; cursor:pointer;">داخستن</button>
+        </div>
+    </div>
     <section class="scroll-section">
         <h2 class="title">چیرۆکی ئێمە 💖</h2>
         <div class="timeline">
@@ -922,7 +972,23 @@
             </div>
         </div>
     </section>
-
+    <section class="scroll-section">
+        <h2 class="title" style="font-family: 'Lalezar', cursive;">پلانەکانی داهاتوومان ✨</h2>
+        <div class="cards" style="max-width: 800px; margin: 0 auto;">
+            <div class="card" style="border-left: 5px solid #ff2d95;">
+                <h3>✈️ گەشتە چاوەڕوانکراوەکان</h3>
+                <p>بە نیازین پێکەوە بچین بۆ ئەو شوێنەی کە هەمیشە خەونمان پێوە بینیوە و ساتەکان تۆمار بکەین.</p>
+            </div>
+            <div class="card" style="border-left: 5px solid #7c3aed;">
+                <h3>🏡 ماڵی خەونەکان</h3>
+                <p>بنیاتنانی ژیانێکی پڕ لە ئارامی و خۆشەویستی لەو ماڵەی کە تەنها هی خۆمانە.</p>
+            </div>
+            <div class="card" style="border-left: 5px solid #ff7bc3;">
+                <h3>💖 بەڵێنی هەمیشەیی</h3>
+                <p>بەڵێنی ئەوەی لە هەموو قۆناغەکانی ژیاندا، دەست لە دەستی یەکتر بەردەین و پشتیوان بین.</p>
+            </div>
+        </div>
+    </section>
     <section class="scroll-section">
         <h2 class="title">دەڵۆپەکانی خۆشەویستی 💌</h2>
         <div class="cards">
@@ -956,6 +1022,12 @@
             </div>
         </div>
     </section>
+    <div style="text-align: center; margin: 30px;">
+        <div id="fingerprintArea" onclick="unlockSecret()" style="cursor: pointer; display: inline-block;">
+            <span style="font-size: 50px; color: #ff2d95; filter: drop-shadow(0 0 10px #ff2d95);">🖐️</span>
+            <p style="color: #ffb6d9; font-size: 0.9rem;">پەنجەت بنێ بەسەر دڵمدا بۆ بینینی نهێنییەک</p>
+        </div>
+    </div>
 
     <footer>
         بە خۆشەویستی کێشراوە ❤️ بۆ زرنگ و دالیا | لە 25/2/2024 ـەوە هەمیشە پێکەوە ✨
@@ -1210,7 +1282,35 @@
                 alert("ئای! پاسۆردەکە هەڵەیە، دیسان هەوڵ بدەرەوە ❤️");
             }
         }
+        // زیادکردنی ڕووناکی بە دوای ماوسەکە
+        document.addEventListener('mousemove', (e) => {
+            let cursorGlow = document.createElement('div');
+            cursorGlow.style.position = 'fixed';
+            cursorGlow.style.left = e.clientX + 'px';
+            cursorGlow.style.top = e.clientY + 'px';
+            cursorGlow.style.width = '20px';
+            cursorGlow.style.height = '20px';
+            cursorGlow.style.background = 'rgba(255, 45, 149, 0.3)';
+            cursorGlow.style.borderRadius = '50%';
+            cursorGlow.style.pointerEvents = 'none';
+            cursorGlow.style.filter = 'blur(10px)';
+            document.body.appendChild(cursorGlow);
+            setTimeout(() => cursorGlow.remove(), 500);
+        });
+
+        function unlockSecret() {
+            // دەتوانیت ڤایبرەیشن زیاد بکەیت ئەگەر لەسەر مۆبایل بێت
+            if (navigator.vibrate) {
+                navigator.vibrate(200);
+            }
+            document.getElementById('secretModal').style.display = 'flex';
+        }
+
+        function closeSecret() {
+            document.getElementById('secretModal').style.display = 'none';
+        }
     </script>
+
 </body>
 
 </html>
