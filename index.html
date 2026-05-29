@@ -846,611 +846,614 @@
         }
     </style>
 
-    <div class="audio-container">
-        <button class="play-btn" id="playBtn" onclick="toggleAudio()">▶</button>
-        <div class="audio-text">جوانترین نامەی دەنگی🎙️</div>
-        <audio id="myVoice">
+    < </head>
+
+        <body>
+
+            <canvas id="heartCanvas" style="position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:999;"></canvas>
+
+            <div id="passwordModal" style="position:fixed; inset:0; background:radial-gradient(circle, #2e1065, #030712); display:flex; align-items:center; justify-content:center; z-index:9999;">
+                <div style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(15px); padding: 40px; border-radius: 30px; border: 1px solid rgba(255, 255, 255, 0.2); text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.5); animation: breathe 3s infinite alternate;">
+
+                    <h2 style="color: white; font-family: 'Lalezar', cursive; margin-bottom: 20px;">فەرموو دڵی من ❤️</h2>
+                    <p style="color: #ffb6d9; margin-bottom: 20px;">تەنها پاسۆردەکەت بنووسە بۆ کردنەوەی نهێنییەکانی دڵم</p>
+
+                    <input type="password" id="passInput" placeholder="••••" style="width: 200px; padding: 12px; border-radius: 50px; border: none; text-align: center; background: rgba(255,255,255,0.9); font-size: 1.2rem; outline: none;">
+                    <br>
+                    <button onclick="checkPassword()" style="margin-top: 20px; padding: 12px 40px; border-radius: 50px; border: none; background: #ff2d95; color: white; font-weight: bold; cursor: pointer; transition: 0.3s;">کردنەوە</button>
+                </div>
+            </div>
+
+            <style>
+                @keyframes breathe {
+                    from {
+                        transform: scale(1);
+                        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+                    }
+                    to {
+                        transform: scale(1.02);
+                        box-shadow: 0 20px 70px rgba(255, 45, 149, 0.3);
+                    }
+                }
+            </style>
+            <div class="hearts" id="hearts"></div>
+
+            <!-- پێکهاتەی پلەیەرەکە لەگەڵ دوگمەی وەستاندن -->
+            <div class="music-wrapper">
+                <div class="playlist-panel" id="playlistPanel">
+                    <div class="playlist-title">
+                        <span>کۆنتڕۆڵ و لیست 🎵</span>
+                    </div>
+
+                    <!-- بەشی کۆنتڕۆڵی سەرەکی (وەستاندن و لێدان) -->
+                    <div class="main-controls">
+                        <div class="current-track-name" id="currentTrackLabel">گۆرانی یەکەم (چاوت ڕەشە )</div>
+                        <button class="play-pause-btn" id="mainPlayPauseBtn" onclick="togglePlayPause()">⏸</button>
+                    </div>
+
+                    <div class="playlist-items">
+                        <div class="track-item active-track" onclick="changeTrack(0, this, 'گۆرانی یەکەم (چاوت ڕەشە )')">🎵 گۆرانی یەکەم</div>
+                        <div class="track-item" onclick="changeTrack(1, this, 'گۆرانی دووەم (شیرینم گەرچی)')">🎵 گۆرانی دووەم</div>
+                        <div class="track-item" onclick="changeTrack(2, this, 'گۆرانی سێیەم (پێی بڵێن)')">🎵 گۆرانی سێیەم</div>
+                    </div>
+                </div>
+
+                <div class="music-player-widget" onclick="togglePlaylistView()">
+                    <span class="music-icon" id="discIcon">🎵</span>
+                    <audio id="loveSong" loop src="https://www.image2url.com/r2/default/audio/1779372743068-e142c3c2-249b-48bd-9a74-7ecfb0a49c66.mp3"></audio>
+                </div>
+            </div>
+
+            <!-- مۆداڵی نامەی نهێنی -->
+            <div id="letterModal" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn" onclick="closeLetter()">&times;</span>
+                    <h2>بۆ دالیا گیان 💌</h2>
+                    <p>
+                        ئەم ماڵپەڕە تەنها کۆد و نووسین نییە، بەڵکو گوزارشتە لەو عەشقە گەورەیەی لە ناخمدایە بۆ تۆ.<br> تۆ ئەو کەسەی کە ژیانمت بە تەواوی گۆڕی و هەموو ساتەکانت کردم بە ڕووناکی و خەندە.
+                    </p>
+                    <p style="margin-top: 20px; font-weight: bold; color: #ff2d95;">
+                        لەگەڵ عەشقی بێکۆتاییم،<br> زرنگ ❤️
+                    </p>
+                </div>
+            </div>
+
+            <header>
+
+
+                <script>
+                    function toggleAudio() {
+                        var audio = document.getElementById("myVoice");
+                        var btn = document.getElementById("playBtn");
+
+                        if (audio.paused) {
+                            audio.play().then(() => {
+                                btn.innerHTML = "⏸️ وەستاندن";
+                            }).catch(error => {
+                                console.log("هەڵەیەک ڕوویدا: ", error);
+                                alert("کێشەیەک لە پەیوەندی بە فایلەکە هەیە، دڵنیابە لە لینکەکەت.");
+                            });
+                        } else {
+                            audio.pause();
+                            btn.innerHTML = "▶️ گوێگرتن";
+                        }
+                    }
+                </script>
+                <div class="hero">
+                    <h1>زرنگ ❤️ دالیا</h1>
+                    <p>
+                        چیرۆکی خۆشەویستی هەمووی جوانن، بەڵام چیرۆکی ئێوە تایبەتترینە ✨<br> گەشتێک پڕ لە خۆشی، یادەوەری، و خۆشەویستی بێکۆتایی 💕<br><br> 📅 25/2/2024 — دەستپێکی جوانترین چیرۆکی خۆشەویستی
+                    </p>
+
+                    <div class="countdown-container">
+                        <div class="time-box">
+                            <span id="seconds">00</span>
+                            <p>چرکە</p>
+                        </div>
+                        <div class="time-box">
+                            <span id="minutes">00</span>
+                            <p>خولەک</p>
+                        </div>
+                        <div class="time-box">
+                            <span id="hours">00</span>
+                            <p>کاتژمێر</p>
+                        </div>
+                        <div class="time-box">
+                            <span id="days">00</span>
+                            <p>ڕۆژ</p>
+                        </div>
+                    </div>
+
+                    <div class="btn-group">
+                        <button class="btn" onclick="showMessage()">ئەفسوونی خۆشەویستی ✨</button>
+                        <button class="btn btn-letter" onclick="openLetter()">نامەیەکی نهێنی 💌</button>
+                    </div>
+
+                    <div class="message" id="message"></div>
+                </div>
+                <div class="audio-container">
+                    <button class="play-btn" id="playBtn" onclick="toggleAudio()">▶</button>
+
+                    <div class="audio-text">جوانترین نامەی دەنگی🎙️</div>
+
+                    <audio id="myVoice">
         <source src="https://www.image2url.com/r2/default/audio/1780082859556-a99a588c-b648-4541-bdbe-ab132df50c38.mp3" type="audio/mpeg">
     </audio>
-    </div>
-</head>
+                </div>
 
-<body>
+            </header>
 
-    <canvas id="heartCanvas" style="position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:999;"></canvas>
+            <div id="secretModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:2000; align-items:center; justify-content:center;">
+                <div style="background:white; padding:40px; border-radius:30px; text-align:center; color:#8b0042; max-width:300px;">
+                    <h2 style="font-family: 'Lalezar', cursive;">تایبەت بۆ دالیا ✨</h2>
+                    <p>تەنها تۆ کلیلی دڵی منی. بوونی تۆ لە ژیانمدا گەورەترین دیارییە کە خودا پێی بەخشیوم. خۆشم دەوێیت! ❤️</p>
+                    <button onclick="closeSecret()" style="margin-top:20px; padding:10px 30px; background:#ff2d95; color:white; border:none; border-radius:20px; cursor:pointer;">داخستن</button>
+                </div>
+            </div>
+            <section class="scroll-section">
+                <h2 class="title">چیرۆکی ئێمە 💖</h2>
+                <div class="timeline">
+                    <div class="timeline-item right">
+                        <div class="timeline-content">
+                            <h3>🌸 یەکەم دیدار</h3>
+                            <p>دەستپێکی پەیوەندییەکی جوان کە دڵەکان بە یەکەوە لێیاندا و بوو بە سەرەتای تەمەنێک.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <h3>✨ ساتە خۆشەکان</h3>
+                            <p>هەر چرکەیەک بەیەکەوە بووە یادەوەرییەکی پڕ لە خەندە, شادی، و کاتی ناوازە.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right">
+                        <div class="timeline-content">
+                            <h3>💞 خۆشەویستی هەمیشەیی</h3>
+                            <p>پەیوەندییەک کە لەسەر متمانەی پتەو، گرنگیدانی بێ مەرج و پشتگیری هەمیشەیی دروست بووە.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-    <div id="passwordModal" style="position:fixed; inset:0; background:radial-gradient(circle, #2e1065, #030712); display:flex; align-items:center; justify-content:center; z-index:9999;">
-        <div style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(15px); padding: 40px; border-radius: 30px; border: 1px solid rgba(255, 255, 255, 0.2); text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.5); animation: breathe 3s infinite alternate;">
+            <section class="scroll-section">
+                <h2 class="title">بۆچی خۆشم دەوێیت؟ 🔐</h2>
+                <div class="interactive-note-section">
+                    <div class="love-reason-card" onclick="nextReason()">
+                        <span style="font-size: 2.7rem;">💝</span>
+                        <p class="reason-text" id="reasonLabel">کلیک لێرە بکە بۆ دەرکەوتنی هۆکارەکان...</p>
+                        <p style="font-size: 0.85rem; color: #ffb6d9; margin-top: 15px; opacity: 0.7;">(بۆ بینینی هۆکاری تر، دووبارە کلیک بکەرەوە)</p>
+                    </div>
+                </div>
+            </section>
 
-            <h2 style="color: white; font-family: 'Lalezar', cursive; margin-bottom: 20px;">فەرموو دڵی من ❤️</h2>
-            <p style="color: #ffb6d9; margin-bottom: 20px;">تەنها پاسۆردەکەت بنووسە بۆ کردنەوەی نهێنییەکانی دڵم</p>
+            <section class="scroll-section">
+                <h2 class="title">یادەوەرییەکان 📸</h2>
+                <div class="gallery">
+                    <div class="photo" style="background-image:url('https://cdn.corenexis.com/files/c/1878743720.jpg');">
+                        <div class="photo-overlay"><span>جوانترین ساتی پێکەوەبوونمان ✨</span></div>
+                    </div>
+                    <div class="photo" style="background-image:url('https://cdn.corenexis.com/files/c/8861559720.jpg');">
+                        <div class="photo-overlay"><span>خەندەکەت تەواوی مانای ژیانمە 💕</span></div>
+                    </div>
+                    <div class="photo" style="background-image:url('https://cdn.corenexis.com/files/c/1637433720.jpg');">
 
-            <input type="password" id="passInput" placeholder="••••" style="width: 200px; padding: 12px; border-radius: 50px; border: none; text-align: center; background: rgba(255,255,255,0.9); font-size: 1.2rem; outline: none;">
-            <br>
-            <button onclick="checkPassword()" style="margin-top: 20px; padding: 12px 40px; border-radius: 50px; border: none; background: #ff2d95; color: white; font-weight: bold; cursor: pointer; transition: 0.3s;">کردنەوە</button>
-        </div>
-    </div>
-
-    <style>
-        @keyframes breathe {
-            from {
-                transform: scale(1);
-                box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-            }
-            to {
-                transform: scale(1.02);
-                box-shadow: 0 20px 70px rgba(255, 45, 149, 0.3);
-            }
-        }
-    </style>
-    <div class="hearts" id="hearts"></div>
-
-    <!-- پێکهاتەی پلەیەرەکە لەگەڵ دوگمەی وەستاندن -->
-    <div class="music-wrapper">
-        <div class="playlist-panel" id="playlistPanel">
-            <div class="playlist-title">
-                <span>کۆنتڕۆڵ و لیست 🎵</span>
+                    </div>
+                    <div class="photo" style="background-image:url('https://cdn.corenexis.com/files/c/9484218720.jpg');">
+                        <div class="photo-overlay"><span>بۆ ئەبەد پێکەوە و دەست لەناو دەست 🔒</span></div>
+                    </div>
+                    <div class="photo" style="background-image:url('https://cdn.corenexis.com/files/c/6483513720.jpg');">
+                        <div class="photo-overlay"><span>باشترین هاوڕێ و هاوسەفەری ڕۆحم 💖</span></div>
+                    </div>
+                </div>
+            </section>
+            <section class="scroll-section">
+                <h2 class="title" style="font-family: 'Lalezar', cursive;">پلانەکانی داهاتوومان ✨</h2>
+                <div class="cards" style="max-width: 800px; margin: 0 auto;">
+                    <div class="card" style="border-left: 5px solid #ff2d95;">
+                        <h3>✈️ گەشتە چاوەڕوانکراوەکان</h3>
+                        <p>بە نیازین پێکەوە بچین بۆ ئەو شوێنەی کە هەمیشە خەونمان پێوە بینیوە و ساتەکان تۆمار بکەین.</p>
+                    </div>
+                    <div class="card" style="border-left: 5px solid #7c3aed;">
+                        <h3>🏡 ماڵی خەونەکان</h3>
+                        <p>بنیاتنانی ژیانێکی پڕ لە ئارامی و خۆشەویستی لەو ماڵەی کە تەنها هی خۆمانە.</p>
+                    </div>
+                    <div class="card" style="border-left: 5px solid #ff7bc3;">
+                        <h3>💖 بەڵێنی هەمیشەیی</h3>
+                        <p>بەڵێنی ئەوەی لە هەموو قۆناغەکانی ژیاندا، دەست لە دەستی یەکتر بەردەین و پشتیوان بین.</p>
+                    </div>
+                </div>
+            </section>
+            <section class="scroll-section">
+                <h2 class="title">دەڵۆپەکانی خۆشەویستی 💌</h2>
+                <div class="cards">
+                    <div class="card">
+                        <h3>💖 دڵ</h3>
+                        <p>هەر لێدانی دڵ بە ناوی یەکترییە و هیچ شتێک کەم مۆمێنتەکانی گەرم ناکاتەوە.</p>
+                    </div>
+                    <div class="card">
+                        <h3>🌙 خەون</h3>
+                        <p>خەونەکان جوانتر و گەورەتر دەبن کاتێک پێکەوە بەرەو ڕوویان هەنگاو دەنێین.</p>
+                    </div>
+                    <div class="card">
+                        <h3>✨ ئایندە</h3>
+                        <p>ئایندەیەکی گەش و پڕ لە شادی و سەرکەوتن چاوەڕێی عەشقە بێگەردەکەتانە.</p>
+                    </div>
+                    <div class="card">
+                        <h3>💖 تایبەتترین نازناوەکان</h3>
+                        <p>(شاژنەکەم، پاشاکەم، باوانەکەم، بۆگەنەکەم، بوون و نەبوونم، ئەبەدیەکەم، ئەزیزی ڕۆحم، گەورەی ماڵەکەم ❤️)</p>
+                    </div>
+                    <div class="card">
+                        <h3>💌 پەیام</h3>
+                        <p>دالیا گیان، تۆ جوانترین ڕووداوی تەواوی ژیانمی. هەرکاتێک لەگەڵ تۆم دڵم پڕە لە ئارامی 💕</p>
+                    </div>
+                    <div class="card">
+                        <h3>🎁 دیاری</h3>
+                        <p>هەر ساتێک، هەر قسەیەک و هەر نیگایەک لەگەڵ تۆدا، گەورەترین و ناوازەترین دیارییە ❤️</p>
+                    </div>
+                    <div class="card">
+                        <h3>✨ ئەو ناوانەی حەزمان لێیە بۆ منداڵەکانمان</h3>
+                        <p>بۆ کچ: "زین، yۆڤان" | بۆ کوڕ: "زەند، لۆڤان"</p>
+                    </div>
+                </div>
+            </section>
+            <div style="text-align: center; margin: 30px;">
+                <div id="fingerprintArea" onclick="unlockSecret()" style="cursor: pointer; display: inline-block;">
+                    <span style="font-size: 50px; color: #ff2d95; filter: drop-shadow(0 0 10px #ff2d95);">🖐️</span>
+                    <p style="color: #ffb6d9; font-size: 0.9rem;">پەنجەت بنێ بەسەر دڵمدا بۆ بینینی نهێنییەک</p>
+                </div>
             </div>
 
-            <!-- بەشی کۆنتڕۆڵی سەرەکی (وەستاندن و لێدان) -->
-            <div class="main-controls">
-                <div class="current-track-name" id="currentTrackLabel">گۆرانی یەکەم (چاوت ڕەشە )</div>
-                <button class="play-pause-btn" id="mainPlayPauseBtn" onclick="togglePlayPause()">⏸</button>
-            </div>
+            <footer>
+                بە خۆشەویستی کێشراوە ❤️ بۆ زرنگ و دالیا | لە 25/2/2024 ـەوە هەمیشە پێکەوە ✨
+            </footer>
 
-            <div class="playlist-items">
-                <div class="track-item active-track" onclick="changeTrack(0, this, 'گۆرانی یەکەم (چاوت ڕەشە )')">🎵 گۆرانی یەکەم</div>
-                <div class="track-item" onclick="changeTrack(1, this, 'گۆرانی دووەم (شیرینم گەرچی)')">🎵 گۆرانی دووەم</div>
-                <div class="track-item" onclick="changeTrack(2, this, 'گۆرانی سێیەم (پێی بڵێن)')">🎵 گۆرانی سێیەم</div>
-            </div>
-        </div>
+            <script>
+                const messages = [
+                    'زرنگ ❤️ دالیا هەمیشە بۆ یەکتر',
+                    'خۆشەویستی بەهێزترین و جوانترین جادووی دڵە ✨',
+                    'پێکەوە بوونتان جوانترین تابلۆی سەر زەوییە 💕',
+                    'ئێوە خۆشی و ئارامی ڕاستەقینەی یەکتریتن 🌸',
+                    'چیرۆکی خۆشەویستیتان هەمیشە زیندووە و کۆتایی نییە 💖'
+                ];
 
-        <div class="music-player-widget" onclick="togglePlaylistView()">
-            <span class="music-icon" id="discIcon">🎵</span>
-            <audio id="loveSong" loop src="https://www.image2url.com/r2/default/audio/1779372743068-e142c3c2-249b-48bd-9a74-7ecfb0a49c66.mp3"></audio>
-        </div>
-    </div>
+                const loveReasons = [
+                    "چونکە لەگەڵ تۆدا، خۆم بە دڵخۆشترین و بەختیارترین کەسی دنیا دەزانم 🌟",
+                    "چونکە پێکەنینەکانت هەموو خەمەکانی دڵم دەشۆنەوە چرکەبەچرکە 🤍",
+                    "چونکە متمانە و پشتگیری تۆ گەورەترین هێز و پاڵنەرە بۆ ژیانم دایمە 💎",
+                    "چونکە تۆ تەنها خۆشەویستم نیت، بەڵکو تەواوکەری ڕۆح و تەواوی بوونمی 🌸",
+                    "چونکە لە قورسترین ساتەکاندا، تەنها بیرکردنەوە لە تۆ دڵم بە تەواوی ئارام دەکاتەوە 💕"
+                ];
 
-    <!-- مۆداڵی نامەی نهێنی -->
-    <div id="letterModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeLetter()">&times;</span>
-            <h2>بۆ دالیا گیان 💌</h2>
-            <p>
-                ئەم ماڵپەڕە تەنها کۆد و نووسین نییە، بەڵکو گوزارشتە لەو عەشقە گەورەیەی لە ناخمدایە بۆ تۆ.<br> تۆ ئەو کەسەی کە ژیانمت بە تەواوی گۆڕی و هەموو ساتەکانت کردم بە ڕووناکی و خەندە.
-            </p>
-            <p style="margin-top: 20px; font-weight: bold; color: #ff2d95;">
-                لەگەڵ عەشقی بێکۆتاییم،<br> زرنگ ❤️
-            </p>
-        </div>
-    </div>
+                const tracks = [
+                    "https://www.image2url.com/r2/default/audio/1779372743068-e142c3c2-249b-48bd-9a74-7ecfb0a49c66.mp3",
+                    "https://www.image2url.com/r2/default/audio/1779375991648-47ed1934-a15a-4f6a-92d7-d504f6341de8.mp3",
+                    "https://www.image2url.com/r2/default/audio/1779376304729-1f123847-6d20-49c7-9fd4-0e7fa272abf5.mp3"
+                ];
 
-    <header>
+                let reasonIndex = 0;
 
-
-        <script>
-            function toggleAudio() {
-                var audio = document.getElementById("myVoice");
-                var btn = document.getElementById("playBtn");
-
-                if (audio.paused) {
-                    audio.play().then(() => {
-                        btn.innerHTML = "⏸️ وەستاندن";
-                    }).catch(error => {
-                        console.log("هەڵەیەک ڕوویدا: ", error);
-                        alert("کێشەیەک لە پەیوەندی بە فایلەکە هەیە، دڵنیابە لە لینکەکەت.");
-                    });
-                } else {
-                    audio.pause();
-                    btn.innerHTML = "▶️ گوێگرتن";
+                function nextReason() {
+                    const label = document.getElementById('reasonLabel');
+                    label.style.opacity = 0;
+                    setTimeout(() => {
+                        label.innerText = loveReasons[reasonIndex];
+                        label.style.opacity = 1;
+                        reasonIndex = (reasonIndex + 1) % loveReasons.length;
+                    }, 200);
                 }
-            }
-        </script>
-        <div class="hero">
-            <h1>زرنگ ❤️ دالیا</h1>
-            <p>
-                چیرۆکی خۆشەویستی هەمووی جوانن، بەڵام چیرۆکی ئێوە تایبەتترینە ✨<br> گەشتێک پڕ لە خۆشی، یادەوەری، و خۆشەویستی بێکۆتایی 💕<br><br> 📅 25/2/2024 — دەستپێکی جوانترین چیرۆکی خۆشەویستی
-            </p>
 
-            <div class="countdown-container">
-                <div class="time-box">
-                    <span id="seconds">00</span>
-                    <p>چرکە</p>
-                </div>
-                <div class="time-box">
-                    <span id="minutes">00</span>
-                    <p>خولەک</p>
-                </div>
-                <div class="time-box">
-                    <span id="hours">00</span>
-                    <p>کاتژمێر</p>
-                </div>
-                <div class="time-box">
-                    <span id="days">00</span>
-                    <p>ڕۆژ</p>
-                </div>
-            </div>
-
-            <div class="btn-group">
-                <button class="btn" onclick="showMessage()">ئەفسوونی خۆشەویستی ✨</button>
-                <button class="btn btn-letter" onclick="openLetter()">نامەیەکی نهێنی 💌</button>
-            </div>
-
-            <div class="message" id="message"></div>
-        </div>
-    </header>
-
-    <div id="secretModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:2000; align-items:center; justify-content:center;">
-        <div style="background:white; padding:40px; border-radius:30px; text-align:center; color:#8b0042; max-width:300px;">
-            <h2 style="font-family: 'Lalezar', cursive;">تایبەت بۆ دالیا ✨</h2>
-            <p>تەنها تۆ کلیلی دڵی منی. بوونی تۆ لە ژیانمدا گەورەترین دیارییە کە خودا پێی بەخشیوم. خۆشم دەوێیت! ❤️</p>
-            <button onclick="closeSecret()" style="margin-top:20px; padding:10px 30px; background:#ff2d95; color:white; border:none; border-radius:20px; cursor:pointer;">داخستن</button>
-        </div>
-    </div>
-    <section class="scroll-section">
-        <h2 class="title">چیرۆکی ئێمە 💖</h2>
-        <div class="timeline">
-            <div class="timeline-item right">
-                <div class="timeline-content">
-                    <h3>🌸 یەکەم دیدار</h3>
-                    <p>دەستپێکی پەیوەندییەکی جوان کە دڵەکان بە یەکەوە لێیاندا و بوو بە سەرەتای تەمەنێک.</p>
-                </div>
-            </div>
-            <div class="timeline-item left">
-                <div class="timeline-content">
-                    <h3>✨ ساتە خۆشەکان</h3>
-                    <p>هەر چرکەیەک بەیەکەوە بووە یادەوەرییەکی پڕ لە خەندە, شادی، و کاتی ناوازە.</p>
-                </div>
-            </div>
-            <div class="timeline-item right">
-                <div class="timeline-content">
-                    <h3>💞 خۆشەویستی هەمیشەیی</h3>
-                    <p>پەیوەندییەک کە لەسەر متمانەی پتەو، گرنگیدانی بێ مەرج و پشتگیری هەمیشەیی دروست بووە.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="scroll-section">
-        <h2 class="title">بۆچی خۆشم دەوێیت؟ 🔐</h2>
-        <div class="interactive-note-section">
-            <div class="love-reason-card" onclick="nextReason()">
-                <span style="font-size: 2.7rem;">💝</span>
-                <p class="reason-text" id="reasonLabel">کلیک لێرە بکە بۆ دەرکەوتنی هۆکارەکان...</p>
-                <p style="font-size: 0.85rem; color: #ffb6d9; margin-top: 15px; opacity: 0.7;">(بۆ بینینی هۆکاری تر، دووبارە کلیک بکەرەوە)</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="scroll-section">
-        <h2 class="title">یادەوەرییەکان 📸</h2>
-        <div class="gallery">
-            <div class="photo" style="background-image:url('https://cdn.corenexis.com/files/c/1878743720.jpg');">
-                <div class="photo-overlay"><span>جوانترین ساتی پێکەوەبوونمان ✨</span></div>
-            </div>
-            <div class="photo" style="background-image:url('https://cdn.corenexis.com/files/c/8861559720.jpg');">
-                <div class="photo-overlay"><span>خەندەکەت تەواوی مانای ژیانمە 💕</span></div>
-            </div>
-            <div class="photo" style="background-image:url('https://cdn.corenexis.com/files/c/1637433720.jpg');">
-
-            </div>
-            <div class="photo" style="background-image:url('https://cdn.corenexis.com/files/c/9484218720.jpg');">
-                <div class="photo-overlay"><span>بۆ ئەبەد پێکەوە و دەست لەناو دەست 🔒</span></div>
-            </div>
-            <div class="photo" style="background-image:url('https://cdn.corenexis.com/files/c/6483513720.jpg');">
-                <div class="photo-overlay"><span>باشترین هاوڕێ و هاوسەفەری ڕۆحم 💖</span></div>
-            </div>
-        </div>
-    </section>
-    <section class="scroll-section">
-        <h2 class="title" style="font-family: 'Lalezar', cursive;">پلانەکانی داهاتوومان ✨</h2>
-        <div class="cards" style="max-width: 800px; margin: 0 auto;">
-            <div class="card" style="border-left: 5px solid #ff2d95;">
-                <h3>✈️ گەشتە چاوەڕوانکراوەکان</h3>
-                <p>بە نیازین پێکەوە بچین بۆ ئەو شوێنەی کە هەمیشە خەونمان پێوە بینیوە و ساتەکان تۆمار بکەین.</p>
-            </div>
-            <div class="card" style="border-left: 5px solid #7c3aed;">
-                <h3>🏡 ماڵی خەونەکان</h3>
-                <p>بنیاتنانی ژیانێکی پڕ لە ئارامی و خۆشەویستی لەو ماڵەی کە تەنها هی خۆمانە.</p>
-            </div>
-            <div class="card" style="border-left: 5px solid #ff7bc3;">
-                <h3>💖 بەڵێنی هەمیشەیی</h3>
-                <p>بەڵێنی ئەوەی لە هەموو قۆناغەکانی ژیاندا، دەست لە دەستی یەکتر بەردەین و پشتیوان بین.</p>
-            </div>
-        </div>
-    </section>
-    <section class="scroll-section">
-        <h2 class="title">دەڵۆپەکانی خۆشەویستی 💌</h2>
-        <div class="cards">
-            <div class="card">
-                <h3>💖 دڵ</h3>
-                <p>هەر لێدانی دڵ بە ناوی یەکترییە و هیچ شتێک کەم مۆمێنتەکانی گەرم ناکاتەوە.</p>
-            </div>
-            <div class="card">
-                <h3>🌙 خەون</h3>
-                <p>خەونەکان جوانتر و گەورەتر دەبن کاتێک پێکەوە بەرەو ڕوویان هەنگاو دەنێین.</p>
-            </div>
-            <div class="card">
-                <h3>✨ ئایندە</h3>
-                <p>ئایندەیەکی گەش و پڕ لە شادی و سەرکەوتن چاوەڕێی عەشقە بێگەردەکەتانە.</p>
-            </div>
-            <div class="card">
-                <h3>💖 تایبەتترین نازناوەکان</h3>
-                <p>(شاژنەکەم، پاشاکەم، باوانەکەم، بۆگەنەکەم، بوون و نەبوونم، ئەبەدیەکەم، ئەزیزی ڕۆحم، گەورەی ماڵەکەم ❤️)</p>
-            </div>
-            <div class="card">
-                <h3>💌 پەیام</h3>
-                <p>دالیا گیان، تۆ جوانترین ڕووداوی تەواوی ژیانمی. هەرکاتێک لەگەڵ تۆم دڵم پڕە لە ئارامی 💕</p>
-            </div>
-            <div class="card">
-                <h3>🎁 دیاری</h3>
-                <p>هەر ساتێک، هەر قسەیەک و هەر نیگایەک لەگەڵ تۆدا، گەورەترین و ناوازەترین دیارییە ❤️</p>
-            </div>
-            <div class="card">
-                <h3>✨ ئەو ناوانەی حەزمان لێیە بۆ منداڵەکانمان</h3>
-                <p>بۆ کچ: "زین، yۆڤان" | بۆ کوڕ: "زەند، لۆڤان"</p>
-            </div>
-        </div>
-    </section>
-    <div style="text-align: center; margin: 30px;">
-        <div id="fingerprintArea" onclick="unlockSecret()" style="cursor: pointer; display: inline-block;">
-            <span style="font-size: 50px; color: #ff2d95; filter: drop-shadow(0 0 10px #ff2d95);">🖐️</span>
-            <p style="color: #ffb6d9; font-size: 0.9rem;">پەنجەت بنێ بەسەر دڵمدا بۆ بینینی نهێنییەک</p>
-        </div>
-    </div>
-
-    <footer>
-        بە خۆشەویستی کێشراوە ❤️ بۆ زرنگ و دالیا | لە 25/2/2024 ـەوە هەمیشە پێکەوە ✨
-    </footer>
-
-    <script>
-        const messages = [
-            'زرنگ ❤️ دالیا هەمیشە بۆ یەکتر',
-            'خۆشەویستی بەهێزترین و جوانترین جادووی دڵە ✨',
-            'پێکەوە بوونتان جوانترین تابلۆی سەر زەوییە 💕',
-            'ئێوە خۆشی و ئارامی ڕاستەقینەی یەکتریتن 🌸',
-            'چیرۆکی خۆشەویستیتان هەمیشە زیندووە و کۆتایی نییە 💖'
-        ];
-
-        const loveReasons = [
-            "چونکە لەگەڵ تۆدا، خۆم بە دڵخۆشترین و بەختیارترین کەسی دنیا دەزانم 🌟",
-            "چونکە پێکەنینەکانت هەموو خەمەکانی دڵم دەشۆنەوە چرکەبەچرکە 🤍",
-            "چونکە متمانە و پشتگیری تۆ گەورەترین هێز و پاڵنەرە بۆ ژیانم دایمە 💎",
-            "چونکە تۆ تەنها خۆشەویستم نیت، بەڵکو تەواوکەری ڕۆح و تەواوی بوونمی 🌸",
-            "چونکە لە قورسترین ساتەکاندا، تەنها بیرکردنەوە لە تۆ دڵم بە تەواوی ئارام دەکاتەوە 💕"
-        ];
-
-        const tracks = [
-            "https://www.image2url.com/r2/default/audio/1779372743068-e142c3c2-249b-48bd-9a74-7ecfb0a49c66.mp3",
-            "https://www.image2url.com/r2/default/audio/1779375991648-47ed1934-a15a-4f6a-92d7-d504f6341de8.mp3",
-            "https://www.image2url.com/r2/default/audio/1779376304729-1f123847-6d20-49c7-9fd4-0e7fa272abf5.mp3"
-        ];
-
-        let reasonIndex = 0;
-
-        function nextReason() {
-            const label = document.getElementById('reasonLabel');
-            label.style.opacity = 0;
-            setTimeout(() => {
-                label.innerText = loveReasons[reasonIndex];
-                label.style.opacity = 1;
-                reasonIndex = (reasonIndex + 1) % loveReasons.length;
-            }, 200);
-        }
-
-        function showMessage() {
-            const random = messages[Math.floor(Math.random() * messages.length)];
-            document.getElementById('message').innerHTML = random;
-        }
-
-        // سیستم دەنگ و کۆنتڕۆڵ
-        const audio = document.getElementById('loveSong');
-        const icon = document.getElementById('discIcon');
-        const panel = document.getElementById('playlistPanel');
-        const mainBtn = document.getElementById('mainPlayPauseBtn');
-        const trackLabel = document.getElementById('currentTrackLabel');
-
-        function togglePlaylistView() {
-            panel.style.display = (panel.style.display === "block") ? "none" : "block";
-        }
-
-        // کارپێکردن و وەستاندنی سەرەکی
-        function togglePlayPause() {
-            if (audio.paused) {
-                audio.play();
-                mainBtn.innerText = "⏸";
-                icon.classList.add('music-playing');
-            } else {
-                audio.pause();
-                mainBtn.innerText = "▶";
-                icon.classList.remove('music-playing');
-            }
-        }
-
-        // گۆڕینی گۆرانی لە لیستەکەدا
-        function changeTrack(index, element, trackName) {
-            document.querySelectorAll('.track-item').forEach(item => item.classList.remove('active-track'));
-            element.classList.add('active-track');
-
-            trackLabel.innerText = trackName;
-            audio.src = tracks[index];
-
-            audio.play();
-            mainBtn.innerText = "⏸";
-            icon.classList.add('music-playing');
-        }
-
-        // ئەپدێتی ئۆتۆماتیکی ئایکۆنەکان
-        audio.addEventListener('play', () => {
-            icon.classList.add('music-playing');
-            mainBtn.innerText = "⏸";
-        });
-        audio.addEventListener('pause', () => {
-            icon.classList.remove('music-playing');
-            mainBtn.innerText = "▶";
-        });
-
-        const modal = document.getElementById("letterModal");
-
-        function openLetter() {
-            modal.style.display = "flex";
-        }
-
-        function closeLetter() {
-            modal.style.display = "none";
-        }
-
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-
-        const startDate = new Date('2024-02-25T00:00:00');
-
-        function updateCountUp() {
-            const now = new Date();
-            const difference = now - startDate;
-
-            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-            document.getElementById('days').innerText = days;
-            document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
-            document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
-            document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
-        }
-
-        updateCountUp();
-        setInterval(updateCountUp, 1000);
-
-        function createHearts() {
-            const container = document.getElementById('hearts');
-
-            setInterval(() => {
-                const heart = document.createElement('div');
-                heart.classList.add('heart');
-                heart.innerHTML = '❤';
-
-                heart.style.left = Math.random() * 100 + 'vw';
-                heart.style.fontSize = Math.random() * 22 + 14 + 'px';
-                heart.style.animationDuration = Math.random() * 4 + 5 + 's';
-
-                container.appendChild(heart);
-
-                setTimeout(() => {
-                    heart.remove();
-                }, 9000);
-            }, 350);
-        }
-
-        createHearts();
-
-        const sections = document.querySelectorAll('.scroll-section');
-        const revealSections = () => {
-            sections.forEach(section => {
-                const sectionTop = section.getBoundingClientRect().top;
-                if (sectionTop < window.innerHeight - 100) {
-                    section.classList.add('visible');
+                function showMessage() {
+                    const random = messages[Math.floor(Math.random() * messages.length)];
+                    document.getElementById('message').innerHTML = random;
                 }
-            });
-        };
 
-        window.addEventListener('scroll', revealSections);
-        window.addEventListener('load', revealSections);
-        const discIcon = document.getElementById('discIcon');
-        const mainPlayPauseBtn = document.getElementById('mainPlayPauseBtn');
+                // سیستم دەنگ و کۆنتڕۆڵ
+                const audio = document.getElementById('loveSong');
+                const icon = document.getElementById('discIcon');
+                const panel = document.getElementById('playlistPanel');
+                const mainBtn = document.getElementById('mainPlayPauseBtn');
+                const trackLabel = document.getElementById('currentTrackLabel');
 
-        function togglePlayPause() {
-            if (audio.paused) {
-                audio.play();
-                mainPlayPauseBtn.innerText = '⏸';
-                discIcon.classList.add('music-playing');
-            } else {
-                audio.pause();
-                mainPlayPauseBtn.innerText = '▶';
-                discIcon.classList.remove('music-playing');
-            }
-        }
+                function togglePlaylistView() {
+                    panel.style.display = (panel.style.display === "block") ? "none" : "block";
+                }
 
-        function togglePlaylistView() {
-            const panel = document.getElementById('playlistPanel');
-            panel.style.display = (panel.style.display === 'block') ? 'none' : 'block';
-        }
+                // کارپێکردن و وەستاندنی سەرەکی
+                function togglePlayPause() {
+                    if (audio.paused) {
+                        audio.play();
+                        mainBtn.innerText = "⏸";
+                        icon.classList.add('music-playing');
+                    } else {
+                        audio.pause();
+                        mainBtn.innerText = "▶";
+                        icon.classList.remove('music-playing');
+                    }
+                }
 
-        function changeTrack(index, element, name) {
-            audio.src = tracks[index];
-            audio.play();
-            mainPlayPauseBtn.innerText = '⏸';
-            discIcon.classList.add('music-playing');
+                // گۆڕینی گۆرانی لە لیستەکەدا
+                function changeTrack(index, element, trackName) {
+                    document.querySelectorAll('.track-item').forEach(item => item.classList.remove('active-track'));
+                    element.classList.add('active-track');
 
-            document.getElementById('currentTrackLabel').innerText = name;
+                    trackLabel.innerText = trackName;
+                    audio.src = tracks[index];
 
-            document.querySelectorAll('.track-item').forEach(item => item.classList.remove('active-track'));
-            element.classList.add('active-track');
-        }
+                    audio.play();
+                    mainBtn.innerText = "⏸";
+                    icon.classList.add('music-playing');
+                }
 
-        // نامەی نهێنی
-        function openLetter() {
-            document.getElementById('letterModal').style.display = 'flex';
-        }
-
-        function closeLetter() {
-            document.getElementById('letterModal').style.display = 'none';
-        }
-
-        // هەژمارکردنی کات (Countdown)
-        function updateCountdown() {
-            const startDate = new Date('2024-02-25T00:00:00');
-            const now = new Date();
-            const diff = now - startDate;
-
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-            document.getElementById('days').innerText = String(days).padStart(2, '0');
-            document.getElementById('hours').innerText = String(hours).padStart(2, '0');
-            document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
-            document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
-        }
-        setInterval(updateCountdown, 1000);
-
-        // دروستکردنی دڵە فڕیوەکان
-        function createHearts() {
-            const container = document.getElementById('hearts');
-            for (let i = 0; i < 20; i++) {
-                const heart = document.createElement('div');
-                heart.className = 'heart';
-                heart.innerHTML = '❤';
-                heart.style.left = Math.random() * 100 + 'vw';
-                heart.style.animationDuration = Math.random() * 5 + 5 + 's';
-                heart.style.opacity = Math.random();
-                container.appendChild(heart);
-            }
-        }
-        createHearts();
-
-        // سکڕۆڵ سکشن
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('visible');
-            });
-        });
-        document.querySelectorAll('.scroll-section').forEach(s => observer.observe(s));
-
-        function checkPassword() {
-            const input = document.getElementById('passInput').value;
-            const correctPassword = "2522024"; // لێرە پاسۆردەکە بگۆڕە
-
-            if (input === correctPassword) {
-                document.getElementById('passwordModal').style.display = 'none';
-            } else {
-                alert("ئای! پاسۆردەکە هەڵەیە، دیسان هەوڵ بدەرەوە ❤️");
-            }
-        }
-        // زیادکردنی ڕووناکی بە دوای ماوسەکە
-        document.addEventListener('mousemove', (e) => {
-            let cursorGlow = document.createElement('div');
-            cursorGlow.style.position = 'fixed';
-            cursorGlow.style.left = e.clientX + 'px';
-            cursorGlow.style.top = e.clientY + 'px';
-            cursorGlow.style.width = '20px';
-            cursorGlow.style.height = '20px';
-            cursorGlow.style.background = 'rgba(255, 45, 149, 0.3)';
-            cursorGlow.style.borderRadius = '50%';
-            cursorGlow.style.pointerEvents = 'none';
-            cursorGlow.style.filter = 'blur(10px)';
-            document.body.appendChild(cursorGlow);
-            setTimeout(() => cursorGlow.remove(), 500);
-        });
-
-        function unlockSecret() {
-            // دەتوانیت ڤایبرەیشن زیاد بکەیت ئەگەر لەسەر مۆبایل بێت
-            if (navigator.vibrate) {
-                navigator.vibrate(200);
-            }
-            document.getElementById('secretModal').style.display = 'flex';
-        }
-
-        function closeSecret() {
-            document.getElementById('secretModal').style.display = 'none';
-        }
-
-        function toggleAudio() {
-            var audio = document.getElementById("voiceMessage");
-            var btn = document.getElementById("playPauseBtn");
-
-            if (audio.paused) {
-                audio.play();
-                btn.innerHTML = "⏸️ وەستاندن";
-            } else {
-                audio.pause();
-                btn.innerHTML = "▶️ گوێگرتن";
-            }
-        }
-    </script>
-    <script>
-        // کۆدی دەنگ (گوێگرتن)
-        function toggleAudio() {
-            var audio = document.getElementById("myVoice");
-            var btn = document.getElementById("playBtn");
-
-            if (audio.paused) {
-                audio.play().then(() => {
-                    btn.innerHTML = "⏸️ وەستاندن";
-                }).catch(e => {
-                    console.error("Audio play failed:", e);
-                    alert("تکایە دڵنیابە لە لینکەکەت یان پەیوەندی ئینتەرنێت.");
+                // ئەپدێتی ئۆتۆماتیکی ئایکۆنەکان
+                audio.addEventListener('play', () => {
+                    icon.classList.add('music-playing');
+                    mainBtn.innerText = "⏸";
                 });
-            } else {
-                audio.pause();
-                btn.innerHTML = "▶️ گوێگرتن";
-            }
-        }
+                audio.addEventListener('pause', () => {
+                    icon.classList.remove('music-playing');
+                    mainBtn.innerText = "▶";
+                });
 
-        // کۆدی ئۆتۆماتیکی ڕۆژەکان
-        function updateCountdown() {
-            const startDate = new Date("2024-02-25T00:00:00");
-            const now = new Date();
-            const diff = now - startDate;
+                const modal = document.getElementById("letterModal");
 
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                function openLetter() {
+                    modal.style.display = "flex";
+                }
 
-            document.getElementById("days").innerText = days;
-            document.getElementById("hours").innerText = hours;
-            document.getElementById("minutes").innerText = minutes;
-            document.getElementById("seconds").innerText = seconds;
-        }
-        setInterval(updateCountdown, 1000);
+                function closeLetter() {
+                    modal.style.display = "none";
+                }
 
-        // نامەی نهێنی
-        function openLetter() {
-            document.getElementById("letterModal").style.display = "flex";
-        }
+                window.onclick = function(event) {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+                }
 
-        function closeLetter() {
-            document.getElementById("letterModal").style.display = "none";
-        }
+                const startDate = new Date('2024-02-25T00:00:00');
 
-        // شتە زیادەکان
-        function showMessage() {
-            document.getElementById("message").innerText = "خۆشەویستیم بۆ تۆ وەک ئەم سایتە بێکۆتاییە ❤️";
-        }
+                function updateCountUp() {
+                    const now = new Date();
+                    const difference = now - startDate;
 
-        // بۆ ئەوەی سکڕۆڵ کاتێک ئیش بکات
-        window.addEventListener('scroll', () => {
-            document.querySelectorAll('section').forEach(sec => {
-                if (window.scrollY > sec.offsetTop - 500) sec.classList.add('visible');
-            });
-        });
-    </script>
-</body>
+                    const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                    document.getElementById('days').innerText = days;
+                    document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
+                    document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
+                    document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
+                }
+
+                updateCountUp();
+                setInterval(updateCountUp, 1000);
+
+                function createHearts() {
+                    const container = document.getElementById('hearts');
+
+                    setInterval(() => {
+                        const heart = document.createElement('div');
+                        heart.classList.add('heart');
+                        heart.innerHTML = '❤';
+
+                        heart.style.left = Math.random() * 100 + 'vw';
+                        heart.style.fontSize = Math.random() * 22 + 14 + 'px';
+                        heart.style.animationDuration = Math.random() * 4 + 5 + 's';
+
+                        container.appendChild(heart);
+
+                        setTimeout(() => {
+                            heart.remove();
+                        }, 9000);
+                    }, 350);
+                }
+
+                createHearts();
+
+                const sections = document.querySelectorAll('.scroll-section');
+                const revealSections = () => {
+                    sections.forEach(section => {
+                        const sectionTop = section.getBoundingClientRect().top;
+                        if (sectionTop < window.innerHeight - 100) {
+                            section.classList.add('visible');
+                        }
+                    });
+                };
+
+                window.addEventListener('scroll', revealSections);
+                window.addEventListener('load', revealSections);
+                const discIcon = document.getElementById('discIcon');
+                const mainPlayPauseBtn = document.getElementById('mainPlayPauseBtn');
+
+                function togglePlayPause() {
+                    if (audio.paused) {
+                        audio.play();
+                        mainPlayPauseBtn.innerText = '⏸';
+                        discIcon.classList.add('music-playing');
+                    } else {
+                        audio.pause();
+                        mainPlayPauseBtn.innerText = '▶';
+                        discIcon.classList.remove('music-playing');
+                    }
+                }
+
+                function togglePlaylistView() {
+                    const panel = document.getElementById('playlistPanel');
+                    panel.style.display = (panel.style.display === 'block') ? 'none' : 'block';
+                }
+
+                function changeTrack(index, element, name) {
+                    audio.src = tracks[index];
+                    audio.play();
+                    mainPlayPauseBtn.innerText = '⏸';
+                    discIcon.classList.add('music-playing');
+
+                    document.getElementById('currentTrackLabel').innerText = name;
+
+                    document.querySelectorAll('.track-item').forEach(item => item.classList.remove('active-track'));
+                    element.classList.add('active-track');
+                }
+
+                // نامەی نهێنی
+                function openLetter() {
+                    document.getElementById('letterModal').style.display = 'flex';
+                }
+
+                function closeLetter() {
+                    document.getElementById('letterModal').style.display = 'none';
+                }
+
+                // هەژمارکردنی کات (Countdown)
+                function updateCountdown() {
+                    const startDate = new Date('2024-02-25T00:00:00');
+                    const now = new Date();
+                    const diff = now - startDate;
+
+                    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                    document.getElementById('days').innerText = String(days).padStart(2, '0');
+                    document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+                    document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+                    document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+                }
+                setInterval(updateCountdown, 1000);
+
+                // دروستکردنی دڵە فڕیوەکان
+                function createHearts() {
+                    const container = document.getElementById('hearts');
+                    for (let i = 0; i < 20; i++) {
+                        const heart = document.createElement('div');
+                        heart.className = 'heart';
+                        heart.innerHTML = '❤';
+                        heart.style.left = Math.random() * 100 + 'vw';
+                        heart.style.animationDuration = Math.random() * 5 + 5 + 's';
+                        heart.style.opacity = Math.random();
+                        container.appendChild(heart);
+                    }
+                }
+                createHearts();
+
+                // سکڕۆڵ سکشن
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) entry.target.classList.add('visible');
+                    });
+                });
+                document.querySelectorAll('.scroll-section').forEach(s => observer.observe(s));
+
+                function checkPassword() {
+                    const input = document.getElementById('passInput').value;
+                    const correctPassword = "2522024"; // لێرە پاسۆردەکە بگۆڕە
+
+                    if (input === correctPassword) {
+                        document.getElementById('passwordModal').style.display = 'none';
+                    } else {
+                        alert("ئای! پاسۆردەکە هەڵەیە، دیسان هەوڵ بدەرەوە ❤️");
+                    }
+                }
+                // زیادکردنی ڕووناکی بە دوای ماوسەکە
+                document.addEventListener('mousemove', (e) => {
+                    let cursorGlow = document.createElement('div');
+                    cursorGlow.style.position = 'fixed';
+                    cursorGlow.style.left = e.clientX + 'px';
+                    cursorGlow.style.top = e.clientY + 'px';
+                    cursorGlow.style.width = '20px';
+                    cursorGlow.style.height = '20px';
+                    cursorGlow.style.background = 'rgba(255, 45, 149, 0.3)';
+                    cursorGlow.style.borderRadius = '50%';
+                    cursorGlow.style.pointerEvents = 'none';
+                    cursorGlow.style.filter = 'blur(10px)';
+                    document.body.appendChild(cursorGlow);
+                    setTimeout(() => cursorGlow.remove(), 500);
+                });
+
+                function unlockSecret() {
+                    // دەتوانیت ڤایبرەیشن زیاد بکەیت ئەگەر لەسەر مۆبایل بێت
+                    if (navigator.vibrate) {
+                        navigator.vibrate(200);
+                    }
+                    document.getElementById('secretModal').style.display = 'flex';
+                }
+
+                function closeSecret() {
+                    document.getElementById('secretModal').style.display = 'none';
+                }
+
+                function toggleAudio() {
+                    var audio = document.getElementById("voiceMessage");
+                    var btn = document.getElementById("playPauseBtn");
+
+                    if (audio.paused) {
+                        audio.play();
+                        btn.innerHTML = "⏸️ وەستاندن";
+                    } else {
+                        audio.pause();
+                        btn.innerHTML = "▶️ گوێگرتن";
+                    }
+                }
+            </script>
+            <script>
+                // کۆدی دەنگ (گوێگرتن)
+                function toggleAudio() {
+                    var audio = document.getElementById("myVoice");
+                    var btn = document.getElementById("playBtn");
+
+                    if (audio.paused) {
+                        audio.play().then(() => {
+                            btn.innerHTML = "⏸️ وەستاندن";
+                        }).catch(e => {
+                            console.error("Audio play failed:", e);
+                            alert("تکایە دڵنیابە لە لینکەکەت یان پەیوەندی ئینتەرنێت.");
+                        });
+                    } else {
+                        audio.pause();
+                        btn.innerHTML = "▶️ گوێگرتن";
+                    }
+                }
+
+                // کۆدی ئۆتۆماتیکی ڕۆژەکان
+                function updateCountdown() {
+                    const startDate = new Date("2024-02-25T00:00:00");
+                    const now = new Date();
+                    const diff = now - startDate;
+
+                    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                    document.getElementById("days").innerText = days;
+                    document.getElementById("hours").innerText = hours;
+                    document.getElementById("minutes").innerText = minutes;
+                    document.getElementById("seconds").innerText = seconds;
+                }
+                setInterval(updateCountdown, 1000);
+
+                // نامەی نهێنی
+                function openLetter() {
+                    document.getElementById("letterModal").style.display = "flex";
+                }
+
+                function closeLetter() {
+                    document.getElementById("letterModal").style.display = "none";
+                }
+
+                // شتە زیادەکان
+                function showMessage() {
+                    document.getElementById("message").innerText = "خۆشەویستیم بۆ تۆ وەک ئەم سایتە بێکۆتاییە ❤️";
+                }
+
+                // بۆ ئەوەی سکڕۆڵ کاتێک ئیش بکات
+                window.addEventListener('scroll', () => {
+                    document.querySelectorAll('section').forEach(sec => {
+                        if (window.scrollY > sec.offsetTop - 500) sec.classList.add('visible');
+                    });
+                });
+            </script>
+        </body>
 
 </html>
