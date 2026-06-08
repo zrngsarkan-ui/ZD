@@ -823,7 +823,6 @@
             position: relative;
             overflow: hidden;
             height: 250px;
-            /* بەرزی دیاریکراو بۆ ئەوەی دوگمەی نەخێر لەناو بۆکسەکەدا بگەڕێت */
         }
         
         #noBtn {
@@ -849,6 +848,199 @@
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             color: #9ca3af;
             font-size: 1.05rem;
+        }
+        /* فەیەرباکس و ئاھەنگ */
+        
+        .confetti-piece {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            top: -10px;
+            opacity: 0;
+            z-index: 9999;
+            animation: confetti-fall 3s ease-out forwards;
+        }
+        
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        /* دڵی شوێنکەوتەری ماوس */
+        
+        .mouse-heart {
+            position: fixed;
+            pointer-events: none;
+            font-size: 16px;
+            z-index: 99999;
+            animation: mouse-heart-fade 1.2s ease-out forwards;
+            transform: translate(-50%, -50%);
+        }
+        
+        @keyframes mouse-heart-fade {
+            0% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -80%) scale(0.2);
+            }
+        }
+        /* سلايدەری خۆشەویستی */
+        
+        .love-slider-section {
+            text-align: center;
+            margin: 50px auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 30px;
+            max-width: 500px;
+            border: 1px solid rgba(255, 45, 149, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .love-slider-section h3 {
+            color: #ffb6d9;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .love-slider {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 80%;
+            height: 15px;
+            border-radius: 10px;
+            background: linear-gradient(45deg, #ff9a9e, #ff2d95);
+            outline: none;
+            opacity: 0.9;
+            transition: opacity 0.2s;
+            margin: 20px 0;
+        }
+        
+        .love-slider:hover {
+            opacity: 1;
+        }
+        
+        .love-slider::-webkit-slider-thumb {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: white;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(255, 45, 149, 0.6);
+        }
+        
+        .slider-value {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ff2d95;
+            text-shadow: 0 0 20px rgba(255, 45, 149, 0.5);
+        }
+        
+        .slider-message {
+            color: #ffd6ea;
+            font-size: 1.1rem;
+            margin-top: 15px;
+            min-height: 30px;
+            font-weight: 600;
+        }
+        /* نامەکانی کاتێک */
+        
+        .open-when-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+        
+        .envelope {
+            width: 140px;
+            height: 120px;
+            background: linear-gradient(135deg, #fff0f5, #ffe4e1);
+            border: 2px solid #ffb6d9;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 0.95rem;
+            color: #8b0042;
+            font-weight: 700;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: 0.4s ease;
+            position: relative;
+            padding: 10px;
+        }
+        
+        .envelope::before {
+            content: '✉️';
+            position: absolute;
+            top: -15px;
+            font-size: 30px;
+            filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2));
+        }
+        
+        .envelope:hover {
+            transform: translateY(-8px) rotate(-2deg);
+            box-shadow: 0 12px 25px rgba(255, 45, 149, 0.4);
+            background: linear-gradient(135deg, #ffe4e1, #ffccd5);
+        }
+        /* باووشی مەجازی */
+        
+        .hug-btn {
+            background: linear-gradient(45deg, #ff2d95, #ff7bc3);
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(255, 45, 149, 0.4);
+            transition: 0.3s;
+            margin-top: 40px;
+        }
+        
+        .hug-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 30px rgba(255, 45, 149, 0.6);
+        }
+        
+        .giant-hug {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            font-size: 200px;
+            z-index: 10000;
+            pointer-events: none;
+            animation: hugAnim 2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        
+        @keyframes hugAnim {
+            0% {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 1;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(0.8);
+                opacity: 0;
+            }
         }
     </style>
 </head>
@@ -1056,13 +1248,33 @@
                 <h3>✨ ئەو ناوانەی حەزمان لێیە بۆ منداڵەکانمان</h3>
                 <p>بۆ کچ: "زین، یۆڤان" | بۆ کوڕ: "زەند، لۆڤان"</p>
             </div>
-        </div>
+            <!-- نامەکانی کاتێک -->
+            <div class="card">
+                <!--  -->
+                <div style="text-align: center; margin-bottom: 40px;">
+                    <h3 style="color: #ffb6d9; margin-bottom: 10px;">نامە تایبەتییەکانم بۆ تۆ 💌</h3>
+                    <p style="color: #9ca3af; font-size: 0.9rem;">کلیک لەسەر نانەکە بکە بۆ کردنەوەی نامەکە</p>
+                    <div class="open-when-container">
+                        <div class="envelope" onclick="openWhenLetter(0)">کاتێک خەمناکیت 🥺</div>
+                        <div class="envelope" onclick="openWhenLetter(1)">کاتێک بیرم دەکەیتەوە 🥰</div>
+                        <div class="envelope" onclick="openWhenLetter(2)">کاتێک دڵتەڕزێت 💖</div>
+                        <div class="envelope" onclick="openWhenLetter(3)">کاتێک پێویستت بە باووشە 🤗</div>
+                    </div>
+                </div>
 
-        <div style="text-align: center; margin: 40px 0;">
-            <button class="btn" onclick="openProposal(event)" style="padding: 20px 40px; font-size: 1.2rem; border-radius: 50px; border: none; background: linear-gradient(45deg, #ff2d95, #7c3aed); color: white; cursor: pointer; box-shadow: 0 10px 20px rgba(255, 45, 149, 0.4);">
+                <!-- باووشی مەجازی -->
+                <div style="text-align: center; margin-top: 20px;">
+                    <button class="hug-btn" onclick="sendVirtualHug()">باووشێکم بنێ 🤗</button>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin: 40px 0;">
+                <button class="btn" onclick="openProposal(event)" style="padding: 20px 40px; font-size: 1.2rem; border-radius: 50px; border: none; background: linear-gradient(45deg, #ff2d95, #7c3aed); color: white; cursor: pointer; box-shadow: 0 10px 20px rgba(255, 45, 149, 0.4);">
                 ✨ داواکاریەک بۆ دالیا گیان
             </button>
+            </div>
         </div>
+
 
         <!-- مۆداڵی داواکاری -->
         <div id="proposalModal">
@@ -1083,6 +1295,16 @@
         <div id="fingerprintArea" onclick="unlockSecret()" style="cursor: pointer; display: inline-block;">
             <span style="font-size: 50px; color: #ff2d95; filter: drop-shadow(0 0 10px #ff2d95);">🖐️</span>
             <p style="color: #ffb6d9; font-size: 0.9rem;">پەنجەت بنێ بەسەر دڵمدا بۆ بینینی نهێنییەک</p>
+        </div>
+    </div>
+
+    <!-- سلايدەری خۆشەویستی -->
+    <div style="padding: 0 10% 60px 10%;">
+        <div class="love-slider-section">
+            <h3>دالیا گیان، چەند خۆشم دەوێیت؟ 💕</h3>
+            <input type="range" min="0" max="100" value="100" class="love-slider" id="loveSlider">
+            <div class="slider-value" id="sliderValue">100%</div>
+            <div class="slider-message" id="sliderMessage">عەشقێکی بێکۆتایی! 😍</div>
         </div>
     </div>
 
@@ -1229,7 +1451,7 @@
             }
             createHearts();
 
-            // ئەنیمەیشنی سکڕۆڵ (تەنها یەک جۆر بەکارهاتووە بۆ ئەوەی کێشە دروست نەکات)
+            // ئەنیمەیشنی سکڕۆڵ
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) entry.target.classList.add('visible');
@@ -1305,12 +1527,116 @@
                 window.moveNoBtn();
             });
 
-            window.acceptDate = function() {
-                alert("ئەک یاخوا بە قوربانی هەناسەیەکت بم بۆ هەمیشە لە پشتم و خۆشم دەوێیت 🌹");
-                document.getElementById("proposalModal").style.display = "none";
+            // فەنکشنی دروستکردنی فەیەرباکس (چاککراوە)
+            window.createConfetti = function() {
+                const colors = ['#ff2d95', '#ff7bc3', '#ffd700', '#7c3aed', '#22c55e', '#ff4d4d', '#ffffff'];
+                for (let i = 0; i < 100; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.classList.add('confetti-piece');
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDuration = (Math.random() * 2 + 1.5) + 's';
+                    confetti.style.animationDelay = Math.random() * 1 + 's';
+
+                    // هەندێکیان دڵ بن
+                    if (Math.random() > 0.6) {
+                        confetti.innerHTML = '❤️';
+                        confetti.style.background = 'transparent';
+                        confetti.style.fontSize = (Math.random() * 15 + 10) + 'px';
+                    }
+
+                    // ئەم هێڵە گرنگە بۆ ئەوەی لەسەر شاشەکە دەربکەوێت
+                    document.body.appendChild(confetti);
+
+                    // پاککردنەوەی فەیەرباکس لە دوای ئەنیمەیشنەکە
+                    setTimeout(() => confetti.remove(), 4000);
+                }
             }
 
+            // فەنکشنی پەسندکردن (چاککراوە)
+            window.acceptDate = function() {
+                createConfetti(); // ئاھەنگەکە دەستپێبکات
+                setTimeout(() => {
+                    alert("ئەک یاخوا بە قوربانی هەناسەیەکت بم بۆ هەمیشە لە پشتم و خۆشم دەوێیت 🌹");
+                    document.getElementById("proposalModal").style.display = "none";
+                }, 500);
+            }
+
+            // دڵی شوێنکەوتەری ماوس (تایبەتمەندییەکی نوێی جوان)
+            let lastMouseX = 0,
+                lastMouseY = 0;
+            document.addEventListener('mousemove', function(e) {
+                // بۆ ئەوەی زۆر نەبێت و ماوس هێواش نەکات
+                if (Math.abs(e.clientX - lastMouseX) < 15 && Math.abs(e.clientY - lastMouseY) < 15) return;
+                lastMouseX = e.clientX;
+                lastMouseY = e.clientY;
+
+                const heartEmojis = ['❤️', '💕', '💖', '✨', '💗'];
+                const heart = document.createElement('div');
+                heart.classList.add('mouse-heart');
+                heart.innerHTML = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+                heart.style.left = e.clientX + 'px';
+                heart.style.top = e.clientY + 'px';
+                document.body.appendChild(heart);
+
+                setTimeout(() => heart.remove(), 1200);
+            });
+
         });
+
+        // سلايدەری خۆشەویستی
+        const loveSlider = document.getElementById('loveSlider');
+        const sliderValue = document.getElementById('sliderValue');
+        const sliderMessage = document.getElementById('sliderMessage');
+
+        loveSlider.oninput = function() {
+            if (this.value < 100) {
+                this.value = 100; // ئەگەر کەمتر کردەوە، دەگەڕێتەوە ١٠٠
+                sliderMessage.innerText = "فەرموو تەنها ١٠٠٪! هیچ کەمتر قبوڵ نییە 😜❤️";
+                if (navigator.vibrate) navigator.vibrate(300); // لەرزینەوەی مۆبایل بۆ سەرسوڕهێنان
+            } else {
+                sliderMessage.innerText = "عەشقێکی بێکۆتایی! 😍";
+            }
+            sliderValue.innerText = this.value + "%";
+        }
+
+        // سیستمەکانی نامەی کاتێک و باووش
+
+        // ١. نامەکانی کاتێک
+        const whenLetters = [{
+            title: "کاتێک خەمناکیت 🥺",
+            msg: "دالیا گیان، هەر کاتێک هەست بە خەم کردن دەکەیت، بزانە من هەمیشە لە پشتم. تۆ ئەو کەسەی نیت کە بە تەنها بمێنیتەوە. خەندە بکە، چونکە خەندەکەت جوانترین شتی دنیایە."
+        }, {
+            title: "کاتێک بیرم دەکەیتەوە 🥰",
+            msg: "بزانە کاتێک تۆ بیرم دەکەیتەوە، منیش هەر لەو کاتەدا بیرت دەکەمەوە! ڕۆحی من هەمیشە لەگەڵ تۆیە و بۆت دەلەقێتەوە."
+        }, {
+            title: "کاتێک دڵتەڕزێت 💖",
+            msg: "دەستت بخە سەر دڵت... بیستت؟ ئەو لێدانانە هەمووی بە ناوی تۆیە. تۆ تەنها خۆشەویستم نیت، تۆ تەواوی دڵمی."
+        }, {
+            title: "کاتێک پێویستت بە باووشە 🤗",
+            msg: "ئەگەر لێرەم ببوایە، باووشت دەکردم تا هەموو خەمەکانت بچنەوە. بەڵام ئێستا ئەم باووشە مەجازییە وەربگرە، هەتا لە ڕاستەقینە ببینمەوە."
+        }];
+
+        window.openWhenLetter = function(index) {
+            const letter = whenLetters[index];
+            const modal = document.getElementById("letterModal"); // بەکارهێنانی هەمان مۆداڵی نامەی نهێنی
+            document.querySelector('.modal-content h2').innerText = letter.title;
+            document.querySelector('.modal-content p').innerText = letter.msg;
+            modal.style.display = "flex";
+        }
+
+        // ٢. باووشی مەجازی
+        window.sendVirtualHug = function() {
+            const hug = document.createElement('div');
+            hug.classList.add('giant-hug');
+            hug.innerHTML = '🤗';
+            document.body.appendChild(hug);
+
+            // لەرزینەوەی مۆبایل ئەگەر پشتیوانی بکات
+            if (navigator.vibrate) navigator.vibrate(500);
+
+            setTimeout(() => hug.remove(), 2500);
+        }
     </script>
 
 </body>
