@@ -10,9 +10,6 @@
     <meta name="theme-color" content="#ff2d95">
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-
-
-
     <style>
         * {
             margin: 0;
@@ -23,19 +20,16 @@
         }
         
         body {
-            /* ئەمە ڕەنگە تاریک و بنەوشەیییەکەی وێنەکەتە */
             background: radial-gradient(circle at 50% 50%, #2e1065 0%, #111827 45%, #030712 100%);
             background-attachment: fixed;
             min-height: 100vh;
             margin: 0;
             color: white;
         }
-        /* بۆ ئەوەی ئەو شێوە بازنەیییە تۆخەی وێنەکەت هەبێت */
         
         header {
             background: radial-gradient(circle at center, rgba(46, 16, 101, 0.3) 0%, transparent 70%);
         }
-        /* دڵە فڕیوەکان */
         
         .hearts {
             position: fixed;
@@ -125,7 +119,6 @@
             line-height: 2.2;
             font-size: 1.25rem;
         }
-        /* بەشی کاتژمێر */
         
         .countdown-container {
             display: flex;
@@ -166,7 +159,6 @@
             color: #9ca3af;
             margin-top: 5px !important;
         }
-        /* دوگمەکان */
         
         .btn-group {
             display: flex;
@@ -252,7 +244,6 @@
             margin-top: 10px;
             opacity: 0.7;
         }
-        /* هێڵی کاتی ڕۆمانسی */
         
         .timeline {
             position: relative;
@@ -345,7 +336,6 @@
             color: #d1d5db;
             line-height: 1.8;
         }
-        /* کارتە گشتییەکان لەگەڵ Glow */
         
         .cards {
             display: grid;
@@ -362,10 +352,12 @@
             backdrop-filter: blur(10px);
             transition: 0.4s ease;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-10px) scale(1.02);
+            background: rgba(255, 255, 255, 0.1);
             border-color: rgba(255, 105, 180, 0.4);
             box-shadow: 0 15px 40px rgba(255, 105, 180, 0.2);
         }
@@ -416,7 +408,6 @@
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
             transition: 0.3s ease;
         }
-        /* گەلەری وێنەکان */
         
         .gallery {
             display: grid;
@@ -474,7 +465,6 @@
             border: 1px solid rgba(255, 255, 255, 0.15);
             width: 100%;
         }
-        /* میدیا کوێری بۆ کۆمپیوتەر */
         
         @media(min-width: 769px) {
             .photo::after {
@@ -523,8 +513,30 @@
             .left .timeline-content {
                 text-align: right;
             }
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            .hero {
+                padding: 45px 20px;
+            }
+            .title {
+                font-size: 2.2rem;
+            }
+            .time-box {
+                min-width: 80px;
+                padding: 12px 15px;
+            }
+            .time-box span {
+                font-size: 1.9rem;
+            }
+            section {
+                padding: 60px 5%;
+            }
+            .music-wrapper {
+                bottom: 20px;
+                right: 20px;
+            }
         }
-        /* نامەی نهێنی (Modal) */
         
         .modal {
             display: none;
@@ -594,7 +606,6 @@
             transform: scale(1.2) rotate(90deg);
             color: #c4005b;
         }
-        /* فڵۆتینگ پاناڵی موزیک */
         
         .music-wrapper {
             position: fixed;
@@ -634,7 +645,6 @@
         .music-playing {
             animation: rotateDisk 3.5s linear infinite;
         }
-        /* پاناڵی کۆنتڕۆڵ و لیستی گۆرانییەکان */
         
         .playlist-panel {
             background: rgba(17, 24, 39, 0.9);
@@ -671,7 +681,6 @@
             justify-content: space-between;
             align-items: center;
         }
-        /* بەشی کۆنتڕۆڵکەری سەرەکی (وەستاندن / لێدان) */
         
         .main-controls {
             display: flex;
@@ -754,96 +763,6 @@
             }
         }
         
-        footer {
-            text-align: center;
-            padding: 50px 20px;
-            background: rgba(3, 7, 18, 0.6);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            color: #9ca3af;
-            font-size: 1.05rem;
-        }
-        
-        @media(max-width:768px) {
-            .hero h1 {
-                font-size: 2.8rem;
-            }
-            .hero {
-                padding: 45px 20px;
-            }
-            .title {
-                font-size: 2.2rem;
-            }
-            .time-box {
-                min-width: 80px;
-                padding: 12px 15px;
-            }
-            .time-box span {
-                font-size: 1.9rem;
-            }
-            section {
-                padding: 60px 5%;
-            }
-            .music-wrapper {
-                bottom: 20px;
-                right: 20px;
-            }
-        }
-        
-        .card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            padding: 25px;
-            margin-bottom: 20px;
-            transition: 0.3s;
-            border-right: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .card:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: scale(1.02);
-        }
-        
-        .audio-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            margin: 40px auto;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 30px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            width: fit-content;
-        }
-        
-        .play-btn {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            border: none;
-            background: linear-gradient(135deg, #ff2d95, #ff7bc3);
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 10px 20px rgba(255, 45, 149, 0.3);
-            transition: 0.3s;
-        }
-        
-        .play-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 15px 30px rgba(255, 45, 149, 0.5);
-        }
-        
-        .audio-text {
-            font-size: 1.1rem;
-            color: #ffd6ea;
-            font-weight: 600;
-        }
-        
         .audio-container {
             display: flex;
             flex-direction: column;
@@ -874,16 +793,14 @@
             box-shadow: 0 4px 15px rgba(255, 154, 158, 0.4);
             transition: all 0.3s ease;
         }
-        /* لێرەدا دەڵێین کە بە هیچ جۆرێک گەورە نەبێت لە کاتی ماوس بەسەردابرندا */
         
         .play-btn:hover {
-            transform: scale(1) !important;
             box-shadow: 0 8px 25px rgba(255, 154, 158, 0.6);
             background: linear-gradient(45deg, #ff7bc3, #ff9a9e);
         }
         
         .audio-text {
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Vazirmatn', sans-serif;
             color: #fff;
             font-weight: 500;
             letter-spacing: 1px;
@@ -902,99 +819,70 @@
             }
         }
         
-        #playBtn,
-        #playBtn:hover,
-        #playBtn:active {
-            transform: none !important;
-            scale: 1 !important;
-        }
-        
-        #playBtn {
-            width: 70px;
-            height: 70px;
-        }
-        
-        .cursor-glow {
-            position: fixed;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: rgba(255, 45, 149, .3);
-            filter: blur(10px);
-            pointer-events: none;
-            z-index: 9999;
-        }
-        
         #proposalBox {
             position: relative;
             overflow: hidden;
+            height: 250px;
+            /* بەرزی دیاریکراو بۆ ئەوەی دوگمەی نەخێر لەناو بۆکسەکەدا بگەڕێت */
         }
         
         #noBtn {
             position: absolute;
-            transform: none !important;
-            scale: 1 !important;
             transition: top 0.2s ease, left 0.2s ease;
-        }
-        /* remove any hover grow effects */
-        
-        #noBtn:hover {
-            transform: none !important;
-            scale: 1 !important;
         }
         
         #proposalModal {
             display: none;
-            position: absolute;
-            /* زۆر گرنگە */
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            filter: drop-shadow(0 0 10px #ff2d95);
             z-index: 2000;
-            /* لابردنی center و flex ئەگەر دەتەوێت ڕێک لەسەر دوگمەکە بێت */
             align-items: center;
             justify-content: center;
         }
+        
+        footer {
+            text-align: center;
+            padding: 50px 20px;
+            background: rgba(3, 7, 18, 0.6);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: #9ca3af;
+            font-size: 1.05rem;
+        }
     </style>
-
 </head>
 
 <body>
 
-    <canvas id="heartCanvas" style="position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:999;"></canvas>
-
     <div id="passwordModal" style="position:fixed; inset:0; background:radial-gradient(circle, #2e1065, #030712); display:flex; align-items:center; justify-content:center; z-index:9999;">
         <div style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(15px); padding: 40px; border-radius: 30px; border: 1px solid rgba(255, 255, 255, 0.2); text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.5); animation: breathe 3s infinite alternate;">
-
-            <h2 style="color: white; font-family: 'Lalezar', cursive; margin-bottom: 20px;">فەرموو دڵی من ❤️</h2>
+            <h2 style="color: white; margin-bottom: 20px;">فەرموو دڵی من ❤️</h2>
             <p style="color: #ffb6d9; margin-bottom: 20px;">تەنها پاسۆردەکەت بنووسە بۆ کردنەوەی نهێنییەکانی دڵم</p>
-
             <input type="password" id="passInput" placeholder="••••" style="width: 200px; padding: 12px; border-radius: 50px; border: none; text-align: center; background: rgba(255,255,255,0.9); font-size: 1.2rem; outline: none;">
             <br>
             <button onclick="checkPassword()" style="margin-top: 20px; padding: 12px 40px; border-radius: 50px; border: none; background: #ff2d95; color: white; font-weight: bold; cursor: pointer; transition: 0.3s;">کردنەوە</button>
         </div>
     </div>
 
-
     <div class="hearts" id="hearts"></div>
 
-    <!-- پێکهاتەی پلەیەرەکە لەگەڵ دوگمەی وەستاندن -->
+    <!-- پێکهاتەی پلەیەرەکە -->
     <div class="music-wrapper">
         <div class="playlist-panel" id="playlistPanel">
             <div class="playlist-title">
                 <span>کۆنتڕۆڵ و لیست 🎵</span>
             </div>
-
-            <!-- بەشی کۆنتڕۆڵی سەرەکی (وەستاندن و لێدان) -->
             <div class="main-controls">
-                <div class="current-track-name" id="currentTrackLabel">گۆرانی یەکەم (چاوت ڕەشە )</div>
+                <div class="current-track-name" id="currentTrackLabel">گۆرانی یەکەم</div>
                 <button class="play-pause-btn" id="mainPlayPauseBtn" onclick="togglePlayPause()">⏸</button>
             </div>
-
             <div class="playlist-items">
                 <div class="track-item active-track" onclick="changeTrack(0, this, 'گۆرانی یەکەم (چاوت ڕەشە )')">🎵 گۆرانی یەکەم</div>
                 <div class="track-item" onclick="changeTrack(1, this, 'گۆرانی دووەم (شیرینم گەرچی)')">🎵 گۆرانی دووەم</div>
                 <div class="track-item" onclick="changeTrack(2, this, 'گۆرانی سێیەم (پێی بڵێن)')">🎵 گۆرانی سێیەم</div>
             </div>
         </div>
-
         <div class="music-player-widget" onclick="togglePlaylistView()">
             <span class="music-icon" id="discIcon">🎵</span>
             <audio id="loveSong" loop src="https://www.image2url.com/r2/default/audio/1779372743068-e142c3c2-249b-48bd-9a74-7ecfb0a49c66.mp3"></audio>
@@ -1016,26 +904,6 @@
     </div>
 
     <header>
-
-
-        <script>
-            function toggleAudio() {
-                var audio = document.getElementById("myVoice");
-                var btn = document.getElementById("playBtn");
-
-                if (audio.paused) {
-                    audio.play().then(() => {
-                        btn.innerHTML = "⏸️ وەستاندن";
-                    }).catch(error => {
-                        console.log("هەڵەیەک ڕوویدا: ", error);
-                        alert("کێشەیەک لە پەیوەندی بە فایلەکە هەیە، دڵنیابە لە لینکەکەت.");
-                    });
-                } else {
-                    audio.pause();
-                    btn.innerHTML = "▶️ گوێگرتن";
-                }
-            }
-        </script>
         <div class="hero">
             <h1>زرنگ ❤️ دالیا</h1>
             <p>
@@ -1065,7 +933,6 @@
                 <button class="btn" onclick="showMessage()">ئەفسوونی خۆشەویستی ✨</button>
                 <button class="btn btn-letter" onclick="openLetter()">نامەیەکی نهێنی 💌</button>
             </div>
-
             <div class="message" id="message"></div>
         </div>
 
@@ -1073,20 +940,19 @@
             <button class="play-btn" id="playBtn" onclick="toggleAudio()">▶</button>
             <div class="audio-text">جوانترین نامەی دەنگی 🎙️</div>
             <audio id="myVoice">
-        <source src="https://www.image2url.com/r2/default/audio/1780082859556-a99a588c-b648-4541-bdbe-ab132df50c38.mp3" type="audio/mpeg">
-    </audio>
+                <source src="https://www.image2url.com/r2/default/audio/1780082859556-a99a588c-b648-4541-bdbe-ab132df50c38.mp3" type="audio/mpeg">
+            </audio>
         </div>
-
-
     </header>
 
     <div id="secretModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:2000; align-items:center; justify-content:center;">
         <div style="background:white; padding:40px; border-radius:30px; text-align:center; color:#8b0042; max-width:300px;">
-            <h2 style="font-family: 'Lalezar', cursive;">تایبەت بۆ دالیا ✨</h2>
+            <h2>تایبەت بۆ دالیا ✨</h2>
             <p>تەنها تۆ کلیلی دڵی منی. بوونی تۆ لە ژیانمدا گەورەترین دیارییە کە خودا پێی بەخشیوم. خۆشم دەوێیت! ❤️</p>
             <button onclick="closeSecret()" style="margin-top:20px; padding:10px 30px; background:#ff2d95; color:white; border:none; border-radius:20px; cursor:pointer;">داخستن</button>
         </div>
     </div>
+
     <section class="scroll-section">
         <h2 class="title">چیرۆکی ئێمە 💖</h2>
         <div class="timeline">
@@ -1131,9 +997,7 @@
             <div class="photo" style="background-image:url('https://cdn.corenexis.com/files/c/8861559720.jpg');">
                 <div class="photo-overlay"><span>خەندەکەت تەواوی مانای ژیانمە 💕</span></div>
             </div>
-            <div class="photo" style="background-image:url('https://cdn.corenexis.com/files/c/1637433720.jpg');">
-
-            </div>
+            <div class="photo" style="background-image:url('https://cdn.corenexis.com/files/c/1637433720.jpg');"></div>
             <div class="photo" style="background-image:url('https://cdn.corenexis.com/files/c/9484218720.jpg');">
                 <div class="photo-overlay"><span>بۆ ئەبەد پێکەوە و دەست لەناو دەست 🔒</span></div>
             </div>
@@ -1142,8 +1006,9 @@
             </div>
         </div>
     </section>
+
     <section class="scroll-section">
-        <h2 class="title" style="font-family: 'Lalezar', cursive;">پلانەکانی داهاتوومان ✨</h2>
+        <h2 class="title" style="font-family: 'Vazirmatn', cursive;">پلانەکانی داهاتوومان ✨</h2>
         <div class="cards" style="max-width: 800px; margin: 0 auto;">
             <div class="card" style="border-left: 5px solid #ff2d95;">
                 <h3>✈️ گەشتە چاوەڕوانکراوەکان</h3>
@@ -1159,6 +1024,7 @@
             </div>
         </div>
     </section>
+
     <section class="scroll-section">
         <h2 class="title">دەڵۆپەکانی خۆشەویستی 💌</h2>
         <div class="cards">
@@ -1188,37 +1054,31 @@
             </div>
             <div class="card">
                 <h3>✨ ئەو ناوانەی حەزمان لێیە بۆ منداڵەکانمان</h3>
-                <p>بۆ کچ: "زین، yۆڤان" | بۆ کوڕ: "زەند، لۆڤان"</p>
+                <p>بۆ کچ: "زین، یۆڤان" | بۆ کوڕ: "زەند، لۆڤان"</p>
             </div>
         </div>
 
         <div style="text-align: center; margin: 40px 0;">
             <button class="btn" onclick="openProposal(event)" style="padding: 20px 40px; font-size: 1.2rem; border-radius: 50px; border: none; background: linear-gradient(45deg, #ff2d95, #7c3aed); color: white; cursor: pointer; box-shadow: 0 10px 20px rgba(255, 45, 149, 0.4);">
-        ✨ داواکاریەک بۆ دالیا گیان
-    </button>
+                ✨ داواکاریەک بۆ دالیا گیان
+            </button>
         </div>
 
         <!-- مۆداڵی داواکاری -->
-        <div id="proposalModal" style="display:none; position:fixed; inset:0; background: rgba(0, 0, 0, 0.5); filter: drop-shadow(0 0 10px #ff2d95); z-index:1001; align-items:center; justify-content:center;">
+        <div id="proposalModal">
             <div id="proposalBox" style="background:white; padding:30px; border-radius:30px; text-align:center; max-width:400px; width:90%; color:#333; position:relative;">
                 <h2 style="color:#ff2d95;">بۆ ژیانی داهاتوومان</h2>
                 <p>دالیا گیان، ئامادەی هەموو ژیانت ببەخشیت بە من و بۆ هەمیشە من هەڵبژێریت؟</p>
-
-                <div style="margin-top: 20px;">
+                <div style="margin-top: 20px; display: flex; justify-content: center; gap: 15px;">
                     <button onclick="acceptDate()" style="padding:10px 20px; background:#22c55e; color:white; border:none; border-radius:10px; cursor:pointer;">
-
-            بەڵێ، بەخۆشحاڵییەوە! 😍
-
-        </button>
+                        بەڵێ، بەخۆشحاڵییەوە! 😍
+                    </button>
                     <button id="noBtn" style="background:#d44747; color:white; border:none; padding:10px 20px; border-radius:15px; cursor:pointer;">نەخێر💔</button>
                 </div>
             </div>
-
         </div>
-
-        </div>
-
     </section>
+
     <div style="text-align: center; margin: 30px;">
         <div id="fingerprintArea" onclick="unlockSecret()" style="cursor: pointer; display: inline-block;">
             <span style="font-size: 50px; color: #ff2d95; filter: drop-shadow(0 0 10px #ff2d95);">🖐️</span>
@@ -1232,8 +1092,6 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            // هەموو کۆدەکەت لێرە
-
             const messages = [
                 'زرنگ ❤️ دالیا هەمیشە بۆ یەکتر',
                 'خۆشەویستی بەهێزترین و جوانترین جادووی دڵە ✨',
@@ -1258,12 +1116,10 @@
 
             let reasonIndex = 0;
 
-
             window.showMessage = function() {
                 const random = messages[Math.floor(Math.random() * messages.length)];
                 document.getElementById('message').innerHTML = random;
             }
-
 
             window.nextReason = function() {
                 const label = document.getElementById('reasonLabel');
@@ -1274,8 +1130,6 @@
                     reasonIndex = (reasonIndex + 1) % loveReasons.length;
                 }, 200);
             }
-
-
 
             // سیستم دەنگ و کۆنتڕۆڵ
             const audio = document.getElementById('loveSong');
@@ -1288,7 +1142,6 @@
                 panel.style.display = (panel.style.display === "block") ? "none" : "block";
             }
 
-            // کارپێکردن و وەستاندنی سەرەکی
             window.togglePlayPause = function() {
                 if (audio.paused) {
                     audio.play();
@@ -1301,29 +1154,27 @@
                 }
             }
 
-            // گۆڕینی گۆرانی لە لیستەکەدا
             window.changeTrack = function(index, element, trackName) {
                 document.querySelectorAll('.track-item').forEach(item => item.classList.remove('active-track'));
                 element.classList.add('active-track');
-
                 trackLabel.innerText = trackName;
                 audio.src = tracks[index];
-
                 audio.play();
                 mainBtn.innerText = "⏸";
                 icon.classList.add('music-playing');
             }
 
-            // ئەپدێتی ئۆتۆماتیکی ئایکۆنەکان
             audio.addEventListener('play', () => {
                 icon.classList.add('music-playing');
                 mainBtn.innerText = "⏸";
             });
+
             audio.addEventListener('pause', () => {
                 icon.classList.remove('music-playing');
                 mainBtn.innerText = "▶";
             });
 
+            // مۆداڵی نامە
             const modal = document.getElementById("letterModal");
 
             window.openLetter = function() {
@@ -1335,18 +1186,17 @@
             }
 
             window.onclick = function(event) {
-                    if (event.target == modal) {
-                        modal.style.display = "none";
-                    }
+                if (event.target == modal) {
+                    modal.style.display = "none";
                 }
-                ////////////////////////////////////////
+            }
 
+            // کاتژمێر
             const startDate = new Date('2024-02-25T00:00:00');
 
             function updateCountUp() {
                 const now = new Date();
                 const difference = now - startDate;
-
                 const days = Math.floor(difference / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
@@ -1361,51 +1211,25 @@
             updateCountUp();
             setInterval(updateCountUp, 1000);
 
-            /////////////////////////
+            // دڵە فڕیوەکان
             window.createHearts = function() {
                 const container = document.getElementById('hearts');
-
                 setInterval(() => {
                     const heart = document.createElement('div');
                     heart.classList.add('heart');
                     heart.innerHTML = '❤';
-
                     heart.style.left = Math.random() * 100 + 'vw';
                     heart.style.fontSize = Math.random() * 22 + 14 + 'px';
                     heart.style.animationDuration = Math.random() * 4 + 5 + 's';
-
                     container.appendChild(heart);
-
                     setTimeout(() => {
                         heart.remove();
                     }, 9000);
                 }, 700);
             }
-
             createHearts();
 
-            const sections = document.querySelectorAll('.scroll-section');
-            const revealSections = () => {
-                sections.forEach(section => {
-                    const sectionTop = section.getBoundingClientRect().top;
-                    if (sectionTop < window.innerHeight - 100) {
-                        section.classList.add('visible');
-                    }
-                });
-            };
-            ///////////////////////
-
-            window.addEventListener('scroll', revealSections);
-            window.addEventListener('load', revealSections);
-            const discIcon = document.getElementById('discIcon');
-            const mainPlayPauseBtn = document.getElementById('mainPlayPauseBtn');
-
-
-
-
-
-
-            // سکڕۆڵ سکشن
+            // ئەنیمەیشنی سکڕۆڵ (تەنها یەک جۆر بەکارهاتووە بۆ ئەوەی کێشە دروست نەکات)
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) entry.target.classList.add('visible');
@@ -1413,6 +1237,7 @@
             });
             document.querySelectorAll('.scroll-section').forEach(s => observer.observe(s));
 
+            // پاسۆرد
             window.checkPassword = function() {
                 const input = document.getElementById('passInput').value;
                 const correctPassword = "2522024"; // لێرە پاسۆردەکە بگۆڕە
@@ -1420,16 +1245,13 @@
                 if (input === correctPassword) {
                     document.getElementById('passwordModal').style.display = 'none';
                 } else {
-                    alert("ئای! پاسۆردەکە هەڵەیە، دیسان هەوڵ بدەرەوە ❤️");
+                    alert("ئای! پاسۆردەکە هەڵەیە، دیسان هەوڵبدەرەوە ❤️");
                 }
             }
 
-
+            // نهێنی پەنجە
             window.unlockSecret = function() {
-                // دەتوانیت ڤایبرەیشن زیاد بکەیت ئەگەر لەسەر مۆبایل بێت
-                if (navigator.vibrate) {
-                    navigator.vibrate(200);
-                }
+                if (navigator.vibrate) navigator.vibrate(200);
                 document.getElementById('secretModal').style.display = 'flex';
             }
 
@@ -1437,51 +1259,54 @@
                 document.getElementById('secretModal').style.display = 'none';
             }
 
-            // بۆ ئەوەی سکڕۆڵ کاتێک ئیش بکات
-            window.addEventListener('scroll', () => {
-                document.querySelectorAll('section').forEach(sec => {
-                    if (window.scrollY > sec.offsetTop - 500) sec.classList.add('visible');
-                });
-            });
+            // دەنگی تایبەت
+            window.toggleAudio = function() {
+                var voiceAudio = document.getElementById("myVoice");
+                var btn = document.getElementById("playBtn");
 
-
-            window.openProposal = function() {
-                const modal = document.getElementById("proposalModal");
-                const triggerBtn = event.target; // دیاریکردنی ئەو دوگمەیەی کلیک کراوە
-                const rect = triggerBtn.getBoundingClientRect(); // وەرگرتنی شوێنی وردی دوگمەکە
-
-                modal.style.display = "flex";
+                if (voiceAudio.paused) {
+                    voiceAudio.play().then(() => {
+                        btn.innerHTML = "⏸️";
+                    }).catch(error => {
+                        alert("کێشەیەک لە پەیوەندی بە فایلەکە هەیە، دڵنیابە لە لینکەکەت.");
+                    });
+                } else {
+                    voiceAudio.pause();
+                    btn.innerHTML = "▶";
+                }
             }
 
+            // مۆداڵی داواکاری (پرپۆزال)
+            window.openProposal = function(event) {
+                const proposalModal = document.getElementById("proposalModal");
+                proposalModal.style.display = "flex";
+            }
 
             const noBtn = document.getElementById("noBtn");
             const proposalBox = document.getElementById("proposalBox");
 
-            // دیاریکردنی شوێنی سەرەتایی دوگمەکە بۆ ئەوەی لە ناو بۆکسەکە بێت
-            noBtn.style.left = "200px";
-            noBtn.style.top = "180px";
+            // شوێنی سەرەتایی دوگمەی نەخێر لەناو بۆکسەکەدا
+            noBtn.style.left = "180px";
+            noBtn.style.top = "150px";
 
             window.moveNoBtn = function() {
+                // بەردەوام لەناو بۆکسەکە دەمێنێتەوە بەهۆی overflow: hidden لە CSS
                 const maxX = proposalBox.clientWidth - noBtn.offsetWidth - 20;
                 const maxY = proposalBox.clientHeight - noBtn.offsetHeight - 20;
-
-                // دۆزینەوەی شوێنێکی هەڕەمەکی
                 const randomX = Math.random() * maxX;
                 const randomY = Math.random() * maxY;
-
                 noBtn.style.left = randomX + "px";
                 noBtn.style.top = randomY + "px";
             }
 
-            // زیادکردنی جوڵەکە بۆ ماوس و مۆبایل
             noBtn.addEventListener("mouseover", window.moveNoBtn);
             noBtn.addEventListener("touchstart", (e) => {
-                e.preventDefault(); // بۆ ئەوەی لە مۆبایلدا تەنها کلیک نەکات
+                e.preventDefault();
                 window.moveNoBtn();
             });
 
             window.acceptDate = function() {
-                alert("ئەک یاخوا بە قوربانی  هەناسەیەکت بم بۆ هەمیشە لە پشتم و خۆشم دەوێیت 🌹");
+                alert("ئەک یاخوا بە قوربانی هەناسەیەکت بم بۆ هەمیشە لە پشتم و خۆشم دەوێیت 🌹");
                 document.getElementById("proposalModal").style.display = "none";
             }
 
