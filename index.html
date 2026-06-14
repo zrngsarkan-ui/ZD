@@ -1042,6 +1042,133 @@
                 opacity: 0;
             }
         }
+        
+        .slider-container {
+            position: relative;
+            max-width: 900px;
+            margin: auto;
+            overflow: hidden;
+            border-radius: 30px;
+            box-shadow: 0 15px 40px rgba(255, 45, 149, .3);
+        }
+        
+        .slides {
+            position: relative;
+            height: 600px;
+        }
+        
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity .8s ease;
+        }
+        
+        .slide.active {
+            opacity: 1;
+        }
+        
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 45, 149, .7);
+            border: none;
+            color: white;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 24px;
+            z-index: 5;
+            transition: .3s;
+        }
+        
+        .slider-btn:hover {
+            background: #ff2d95;
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .prev {
+            left: 15px;
+        }
+        
+        .next {
+            right: 15px;
+        }
+        
+        @media(max-width:768px) {
+            .slides {
+                height: 300px;
+            }
+        }
+        
+        .album-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+        
+        .album-buttons button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            color: white;
+            background: linear-gradient(45deg, #ff2d95, #7c3aed);
+        }
+        
+        .slider-container {
+            max-width: 800px;
+            margin: auto;
+        }
+        
+        .slider-container img {
+            width: 100%;
+            height: 550px;
+            object-fit: cover;
+            border-radius: 25px;
+        }
+        
+        .slide-btn {
+            position: fixed;
+            top: 60%;
+            transform: translateY(-50%);
+            width: 55px;
+            height: 55px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 24px;
+            color: white;
+            background: rgba(255, 45, 149, .8);
+            backdrop-filter: blur(10px);
+            z-index: 10;
+            transition: .3s;
+        }
+        
+        .slide-btn:hover {
+            transform: translateY(-50%) scale(1.1);
+            background: #ff2d95;
+        }
+        
+        .prev-btn {
+            left: 300px;
+        }
+        
+        .next-btn {
+            right: 300px;
+        }
+        
+        .slider-container {
+            position: relative;
+            max-width: 800px;
+            margin: auto;
+        }
     </style>
 </head>
 
@@ -1198,7 +1325,29 @@
             </div>
         </div>
     </section>
+    <section class="scroll-section">
+        <h2 class="title">📸 ئەلبومەکانی ئێمە</h2>
 
+        <div class="album-buttons">
+            <button onclick="showAlbum(0)">💕 یەکەم دیدار</button>
+            <button onclick="showAlbum(1)">🌹 گەشتەکان</button>
+            <button onclick="showAlbum(2)">🎂 بۆنەکان</button>
+        </div>
+
+        <div class="slider-container">
+            <img id="albumImage" src="" alt="">
+        </div>
+
+
+        <button class="slide-btn prev-btn" onclick="prevImage()">❮</button>
+
+        <img id="albumImage" src="" alt="">
+
+        <button class="slide-btn next-btn" onclick="nextImage()">❯</button>
+
+        </div>
+
+    </section>
     <section class="scroll-section">
         <h2 class="title" style="font-family: 'Vazirmatn', cursive;">پلانەکانی داهاتوومان ✨</h2>
         <div class="cards" style="max-width: 800px; margin: 0 auto;">
@@ -1636,6 +1785,74 @@
             if (navigator.vibrate) navigator.vibrate(500);
 
             setTimeout(() => hug.remove(), 2500);
+        }
+
+        const albums = [
+            [
+                "https://mp3tourl.com/images/1781448118607-f0b7a7a7-ef97-4050-8fdf-f00195e7b431.jpg",
+                "https://mp3tourl.com/images/1781448382995-ae4c2d99-de6d-48d3-848c-27ec49ff2921.jpg",
+                "https://mp3tourl.com/images/1781448437411-83f94916-e221-470f-9571-5638ba1e0909.jpg"
+
+            ],
+            [
+                "trip1.jpg",
+                "trip2.jpg",
+                "trip3.jpg",
+                "trip4.jpg"
+            ],
+            [
+                "birthday1.jpg",
+                "birthday2.jpg",
+                "birthday3.jpg"
+            ]
+        ];
+
+        let currentAlbum = 0;
+        let currentImage = 0;
+
+        window.showAlbum = function(albumIndex) {
+            currentAlbum = albumIndex;
+            currentImage = 0;
+            updateImage();
+        }
+
+        window.updateImage = function() {
+            document.getElementById("albumImage").src =
+                albums[currentAlbum][currentImage];
+        }
+
+        setInterval(() => {
+            currentImage++;
+
+            if (currentImage >= albums[currentAlbum].length) {
+                currentImage = 0;
+            }
+
+            updateImage();
+        }, 3000);
+
+        window.showAlbum(0);
+
+        window.nextImage = function() {
+
+            currentImage++;
+
+            if (currentImage >= albums[currentAlbum].length) {
+                currentImage = 0;
+            }
+
+            updateImage();
+        }
+
+        window.prevImage = function() {
+
+            currentImage--;
+
+            if (currentImage < 0) {
+                currentImage = albums[currentAlbum].length - 1;
+            }
+
+            updateImage();
         }
     </script>
 
